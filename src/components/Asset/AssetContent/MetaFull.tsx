@@ -28,6 +28,23 @@ export default function MetaFull({ ddo }: { ddo: Asset }): ReactElement {
         <MetaItem title="Docker Image" content={<DockerImage />} />
       )}
       <MetaItem title="DID" content={<code>{ddo?.id}</code>} />
+
+      <MetaItem title="author - NEW" content={ddo?.metadata?.author} />
+      <MetaItem
+        title="algorithm - NEW"
+        content={ddo?.metadata?.algorithm?.container?.tag}
+      />
+      <MetaItem title="created - NEW" content={ddo?.metadata?.created} />
+      <MetaItem title="categories - NEW" content={ddo?.metadata?.categories} />
+      <MetaItem
+        title="additionalInformation - NEW"
+        content={ddo?.metadata?.additionalInformation[0]}
+      />
+      <MetaItem title="license - NEW" content={ddo?.metadata?.license} />
+      <MetaItem title="links[0] - NEW" content={ddo?.metadata?.links[0]} />
+      <MetaItem title="links[1] - NEW" content={ddo?.metadata?.links[1]} />
+      <MetaItem title="links[2] - NEW" content={ddo?.metadata?.links[2]} />
+      <MetaItem title="type - NEW" content={ddo?.metadata?.type} />
     </div>
   ) : null
 }
