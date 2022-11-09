@@ -16,6 +16,7 @@ import { getOceanConfig, getDevelopmentConfig } from '@utils/ocean'
 import { getAccessDetails } from '@utils/accessDetailsAndPricing'
 import { useIsMounted } from '@hooks/useIsMounted'
 import { useMarketMetadata } from './MarketMetadata'
+import { getTransactionHistory } from '@utils/transactionHistory'
 
 export interface AssetProviderValue {
   isInPurgatory: boolean
@@ -136,6 +137,23 @@ function AssetProvider({
   }, [asset?.chainId, asset?.services, accountId, did])
 
   // -----------------------------------
+  // Helper: Get asset transaction history
+  // -----------------------------------
+  const fetchTransactionHistory =
+    useCallback(async (): Promise<TransactionHistory> => {
+      if (!asset?.chainId || !asset?.services) return
+
+      const transactionHistory = await getTransactionHistory(
+        asset.chainId,
+        asset.services[0].datatokenAddress
+      )
+      setAsset((prevState) => ({
+        ...prevState,
+        transactionHistory
+      }))
+    }, [asset?.chainId, asset?.services])
+
+  // -----------------------------------
   // 1. Get and set asset based on passed DID
   // -----------------------------------
   useEffect(() => {
@@ -152,6 +170,15 @@ function AssetProvider({
 
     fetchAccessDetails()
   }, [accountId, fetchAccessDetails, isMounted])
+
+  // -----------------------------------
+  // 3. Attach transaction history to asset
+  // -----------------------------------
+  useEffect(() => {
+    if (!isMounted) return
+
+    fetchTransactionHistory()
+  }, [accountId, fetchTransactionHistory, isMounted])
 
   // -----------------------------------
   // Check user network against asset network

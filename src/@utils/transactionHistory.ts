@@ -1,0 +1,90 @@
+import { LoggerInstance } from '@oceanprotocol/lib'
+import { gql, OperationResult } from 'urql'
+import { getEnsName } from './ens'
+import { fetchData, getQueryContext } from './subgraph'
+
+const transactionalHistoryQuery = gql`
+  query TransactionalHistoryQuery($datatokenId: ID!) {
+    token(id: $datatokenId) {
+      id
+      symbol
+      name
+      publishMarketFeeAddress
+      publishMarketFeeToken
+      publishMarketFeeAmount
+      orders {
+        tx
+        serviceIndex
+        createdTimestamp
+        payer {
+          id
+        }
+        consumer {
+          id
+        }
+        amount
+        estimatedUSDValue
+        lastPriceToken
+        lastPriceValue
+      }
+      dispensers {
+        id
+        active
+        isMinter
+        maxBalance
+        token {
+          id
+          name
+          symbol
+        }
+      }
+    }
+  }
+`
+
+async function getNames(
+  txhistory: TransactionHistory
+): Promise<TransactionHistory> {
+  for (let i = 0; i < txhistory.token.orders.length; i++) {
+    const payerName: string = await getEnsName(
+      txhistory.token.orders[i].payer.id
+    )
+    txhistory.token.orders[i].payer.name = payerName || null
+
+    const consumerName: string = await getEnsName(
+      txhistory.token.orders[i].consumer.id
+    )
+    txhistory.token.orders[i].consumer.name = consumerName || null
+  }
+  return txhistory
+}
+
+export async function getTransactionHistory(
+  chainId: number,
+  datatokenAddress: string
+): Promise<TransactionHistory> {
+  try {
+    console.log(`tx chainId: ${chainId}`)
+    console.log(`tx datatokenAddress: ${datatokenAddress}`)
+    const queryContext = getQueryContext(Number(chainId))
+    const tokenQueryResult: OperationResult<
+      TransactionHistory,
+      { datatokenId: string }
+    > = await fetchData(
+      transactionalHistoryQuery,
+      {
+        datatokenId: datatokenAddress.toLowerCase()
+      },
+      queryContext
+    )
+
+    const txhistory: TransactionHistory = await getNames(tokenQueryResult.data)
+
+    console.log(`order size = ${txhistory.token.orders.length}`)
+    console.log(`tx history query result: ${JSON.stringify(txhistory)}`)
+    console.log(`tx history data.id: ${txhistory.token.id}`)
+    return txhistory
+  } catch (error) {
+    LoggerInstance.error('Error getting transaction history: ', error.message)
+  }
+}
