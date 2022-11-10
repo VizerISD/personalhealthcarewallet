@@ -23,11 +23,36 @@
 
 @media (min-width: 60rem) {
   .grid {
+    grid-template-rows: 0.25fr 1fr;
     grid-template-columns: 1.5fr 1fr;
+    grid-template-areas:
+      'TransactionHistory TransactionHistory'
+      'AssetContentContent AssetContentActions';
+  }
+
+  .content {
+    grid-area: AssetContentContent;
   }
 
   .actions {
     margin-top: var(--spacer);
+    grid-area: AssetContentActions;
+  }
+
+  .transactionHistory {
+    grid-area: TransactionHistory;
+    width: 100%;
+    height: 100%;
+  }
+
+  .transactionHistory > h3 {
+    margin-top: 2.5%;
+    margin-bottom: 0%;
+  }
+
+  .transactionHistory > svg {
+    margin-bottom: 0%;
+    padding-bottom: 0%;
   }
 }
 
