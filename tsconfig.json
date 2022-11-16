@@ -26,7 +26,8 @@
     "skipLibCheck": true,
     "allowJs": true,
     "esModuleInterop": true,
-    "incremental": true
+    "incremental": true,
+    "types": ["d3"]
   },
   "exclude": ["node_modules", ".next", "*.js"],
   "include": ["./src/**/*", "./.jest/**/*", "./next-env.d.ts", "./content/**/*"]

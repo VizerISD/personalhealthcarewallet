@@ -15,6 +15,7 @@ import NetworkName from '@shared/NetworkName'
 import content from '../../../../content/purgatory.json'
 import Web3 from 'web3'
 import Button from '@shared/atoms/Button'
+import TransactionHistoryVisualization from './TransactionHistoryVisualization'
 
 export default function AssetContent({
   asset
@@ -41,6 +42,11 @@ export default function AssetContent({
       </div>
 
       <article className={styles.grid}>
+        <div className={styles.transactionHistory}>
+          <h3>Transaction History Visualization</h3>
+          <TransactionHistoryVisualization />
+        </div>
+
         <div>
           <div className={styles.content}>
             <MetaMain asset={asset} nftPublisher={nftPublisher} />
