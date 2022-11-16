@@ -23,7 +23,7 @@
 
 @media (min-width: 60rem) {
   .grid {
-    grid-template-rows: 0.25fr 1fr;
+    grid-template-rows: 500 1fr;
     grid-template-columns: 1.5fr 1fr;
     grid-template-areas:
       'TransactionHistory TransactionHistory'
