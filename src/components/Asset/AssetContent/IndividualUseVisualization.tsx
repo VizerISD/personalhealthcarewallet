@@ -20,7 +20,6 @@ function payerIDMap(txs: TransactionHistory) {
     }
   }
   return new Map<string, number>([...ids.entries()].sort((a, b) => b[1] - a[1]))
-  return ids
 }
 
 export type BarsProps = {
@@ -38,7 +37,7 @@ const axisLeftTickLabelProps = {
   fill: '#ffffff'
 }
 
-export default function TransactionHistoryVisualization({
+export default function IndividualUseVisualization({
   width,
   height,
   events = false
