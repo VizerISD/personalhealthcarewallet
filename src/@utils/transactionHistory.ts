@@ -45,16 +45,16 @@ const transactionalHistoryQuery = gql`
 async function getNames(
   txhistory: TransactionHistory
 ): Promise<TransactionHistory> {
+  const promiseList = []
   for (let i = 0; i < txhistory.token.orders.length; i++) {
-    const payerName: string = await getEnsName(
-      txhistory.token.orders[i].payer.id
-    )
-    txhistory.token.orders[i].payer.name = payerName || null
-
-    const consumerName: string = await getEnsName(
-      txhistory.token.orders[i].consumer.id
-    )
-    txhistory.token.orders[i].consumer.name = consumerName || null
+    promiseList.push([
+      getEnsName(txhistory.token.orders[i].payer.id),
+      getEnsName(txhistory.token.orders[i].consumer.id)
+    ])
+  }
+  for (let i = 0; i < promiseList.length; i++) {
+    txhistory.token.orders[i].payer.name = (await promiseList[i][0]) || null
+    txhistory.token.orders[i].consumer.name = (await promiseList[i][1]) || null
   }
   return txhistory
 }
@@ -78,7 +78,10 @@ export async function getTransactionHistory(
       queryContext
     )
 
-    const txhistory: TransactionHistory = await getNames(tokenQueryResult.data)
+    // Adding the names takes 3s to load the visualization when the tx count is ~87
+    // TODO: Improve the getNames runtime to under 1s
+    const txhistory: TransactionHistory = tokenQueryResult.data
+    // const txhistory: TransactionHistory = await getNames(tokenQueryResult.data)
 
     console.log(`order size = ${txhistory.token.orders.length}`)
     console.log(`tx history query result: ${JSON.stringify(txhistory)}`)

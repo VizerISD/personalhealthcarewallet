@@ -43,8 +43,12 @@ export default function AssetContent({
 
       <article className={styles.grid}>
         <div className={styles.transactionHistory}>
-          <h3>Transaction History Visualization</h3>
-          <TransactionHistoryVisualization />
+          <h3>Individual Use Visualization</h3>
+          <TransactionHistoryVisualization
+            width={1125}
+            height={400}
+            events={true}
+          />
         </div>
 
         <div>
