@@ -42,7 +42,7 @@ export default function AssetContent({
       </div>
 
       <article className={styles.grid}>
-        <div className={styles.transactionHistory}>
+        <div className={styles.individualUse}>
           <h3>Individual Use Visualization</h3>
           <IndividualUseVisualization width={1125} height={400} events={true} />
         </div>

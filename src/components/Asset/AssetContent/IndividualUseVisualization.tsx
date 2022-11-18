@@ -11,7 +11,6 @@ const verticalMargin = 120
 function payerIDMap(txs: TransactionHistory) {
   const ids = new Map<string, number>()
   const orders = txs?.token?.orders
-  // try forEach
   for (let i = 0; i < orders?.length; i++) {
     if (ids.has(orders[i].payer?.id)) {
       ids.set(orders[i].payer?.id, ids.get(orders[i].payer?.id) + 1)
@@ -71,7 +70,7 @@ export default function IndividualUseVisualization({
   return (
     <div>
       <svg width={width} height={height}>
-        <LinearGradient id="stroke" from="#ff00a5" to="#ffc500" />
+        <LinearGradient id="stroke" from="#ff00a5" to="#999999" />
         <rect fill="url('#stroke')" width="100%" height="100%" rx={14} />
         <Group top={verticalMargin / 2}>
           {[...ids.keys()].map((d) => {
