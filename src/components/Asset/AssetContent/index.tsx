@@ -47,6 +47,11 @@ export default function AssetContent({
           <IndividualUseVisualization width={1125} height={400} events={true} />
         </div>
 
+        <div className={styles.transactionHistory}>
+          <h3>Transaction History Visualization</h3>
+          <IndividualUseVisualization width={1125} height={400} events={true} />
+        </div>
+
         <div>
           <div className={styles.content}>
             <MetaMain asset={asset} nftPublisher={nftPublisher} />
