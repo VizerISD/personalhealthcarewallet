@@ -10,7 +10,7 @@ interface TransactionHistory {
       {
         tx: string
         serviceIndex: number
-        createdTimestamp: number
+        createdTimestamp: number | Date
         payer: {
           id: string
           name: string
