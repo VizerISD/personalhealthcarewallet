@@ -93,11 +93,11 @@ export default function IndividualUseVisualization({
                   }}
                 />
                 <text
-                  x={xScale(address)}
+                  x={xScale(address) + barWidth / 2}
                   y={yMax - barHeight}
                   fill="white"
                   fontSize={12}
-                  dx={'.4em'}
+                  dx={'-2'}
                   dy={'-.33em'}
                   style={{ fontFamily: 'arial' }}
                 >
