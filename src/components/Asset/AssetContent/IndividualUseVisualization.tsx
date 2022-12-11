@@ -4,7 +4,7 @@ import { scaleBand, scaleLinear } from '@visx/scale'
 import { Bar } from '@visx/shape'
 import { Group } from '@visx/group'
 import { useAsset } from '@context/Asset'
-import { AxisLeft } from '@visx/axis'
+import { AxisBottom, AxisLeft, AxisTop } from '@visx/axis'
 
 const verticalMargin = 120
 
@@ -107,12 +107,22 @@ export default function IndividualUseVisualization({
             )
           })}
           <AxisLeft
-            left={40}
+            left={60}
+            top={-10}
             scale={yScale}
             numTicks={5}
             stroke="#ffffff"
             tickStroke="#ffffff"
             tickLabelProps={() => axisLeftTickLabelProps}
+            label="# of Transactions"
+          />
+          <AxisBottom
+            top={285}
+            scale={xScale}
+            numTicks={20}
+            stroke="#ffffff"
+            tickStroke="#ffffff"
+            label="Wallet Addresses"
           />
         </Group>
       </svg>
