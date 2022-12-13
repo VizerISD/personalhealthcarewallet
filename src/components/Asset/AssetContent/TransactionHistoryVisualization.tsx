@@ -82,31 +82,31 @@ export default withTooltip<TimelineProps, Order>(
     // }
 
     // scales
-    // const xScale = useMemo(
-    //   () =>
-    //     scaleTime<number>({
-    //       range: [50, xMax - 50],
-    //       domain: [
-    //         new Date(orders?.length && orders[0]?.createdTimestamp * 1000),
-    //         new Date()
-    //       ]
-    //     }),
-    //   [xMax, orders]
-    // )
     const xScale = useMemo(
       () =>
         scaleTime<number>({
           range: [50, xMax - 50],
           domain: [
-            new Date(
-              filteredOrders?.length &&
-                filteredOrders[0]?.createdTimestamp * 1000
-            ),
+            new Date(orders?.length && orders[0]?.createdTimestamp * 1000),
             new Date()
           ]
         }),
-      [xMax, filteredOrders]
+      [xMax, orders]
     )
+    // const xScale = useMemo(
+    //   () =>
+    //     scaleTime<number>({
+    //       range: [50, xMax - 50],
+    //       domain: [
+    //         new Date(
+    //           filteredOrders?.length &&
+    //             filteredOrders[0]?.createdTimestamp * 1000
+    //         ),
+    //         new Date()
+    //       ]
+    //     }),
+    //   [xMax, filteredOrders]
+    // )
     // const xScale = useMemo(
     //   () =>
     //     scaleTime<number>({
@@ -162,9 +162,10 @@ export default withTooltip<TimelineProps, Order>(
         <svg width={width} height={height}>
           <LinearGradient id="stroke" from="#ff00a5" to="#999999" />
           <rect fill="url('#stroke')" width="100%" height="100%" rx={14} />
-          {txs?.token?.orders?.map((order: Order, i) => {
+          {orders?.map((order: Order, i) => {
             return (
               <Group top={height / 3} key={`dot-${i}`}>
+                {/* {console.log(getDate(order))} */}
                 <circle
                   key={`${i}`}
                   r={parseFloat(order.amount) * 5}
