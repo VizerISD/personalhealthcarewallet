@@ -5,6 +5,7 @@ import { Asset } from '@oceanprotocol/lib'
 declare global {
   interface AssetExtended extends Asset {
     accessDetails?: AccessDetails
-    transactionHistory?: TransactionHistory
+    transactionHistory: TransactionHistory
+    orders: Order[]
   }
 }

@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { LinearGradient } from '@visx/gradient'
 import { scaleLinear, scaleTime } from '@visx/scale'
 import { Group } from '@visx/group'
@@ -13,8 +13,10 @@ import { WithTooltipProvidedProps } from '@visx/tooltip/lib/enhancers/withToolti
 import { AxisBottom } from '@visx/axis'
 import { Bounds } from '@visx/brush/lib/types'
 import { extent } from 'd3-array'
-import { filter } from 'lodash'
 import BaseBrush from '@visx/brush/lib/BaseBrush'
+import { BrushHandleRenderProps } from '@visx/brush/lib/BrushHandle'
+import { PatternLines } from '@visx/pattern'
+import { Brush } from '@visx/brush'
 
 // tooltip
 const tooltipStyles = {
@@ -52,12 +54,17 @@ export default withTooltip<TimelineProps, Order>(
   }: TimelineProps & WithTooltipProvidedProps<Order>) => {
     const brushRef = useRef<BaseBrush | null>(null)
     const { asset } = useAsset()
-    const txs: TransactionHistory = asset.transactionHistory
-    const orders = asset.transactionHistory?.token?.orders
-      .slice()
-      .sort((a, b) => a.createdTimestamp - b.createdTimestamp)
+    const { orders } = asset
 
-    const [filteredOrders, setFilteredOrders] = useState(orders?.slice())
+    const [initialOrders, setInitialOrders] = useState([])
+    const [filteredOrders, setFilteredOrders] = useState([])
+
+    useEffect(() => {
+      orders && setInitialOrders(orders)
+    }, [orders])
+    useEffect(() => {
+      orders && setFilteredOrders(orders)
+    }, [orders])
 
     // bounds
     const xMax = width - 30
@@ -67,80 +74,47 @@ export default withTooltip<TimelineProps, Order>(
     const getDate = (d: Order) => new Date(d?.createdTimestamp * 1000)
     const getY = (d: Order) => parseFloat(d?.amount)
 
-    // const onBrushChange = (domain: Bounds | null) => {
-    //   if (!domain) return
-    //   const { x0, x1, y0, y1 } = domain
-    //   const ordersCopy =
-    //     orders?.length &&
-    //     orders?.filter((order) => {
-    //       const x = getDate(order).getTime()
-    //       const y = getY(order)
-    //       return x > x0 && x < x1 && y > y0 && y < y1
-    //     })
-    //   setFilteredOrders(ordersCopy)
-    //   setFilteredOrders(orders)
-    // }
+    const onBrushChange = (domain: Bounds | null) => {
+      if (!domain) return
+      const { x0, x1 } = domain
+      console.log(x0)
+      console.log(x1)
+      const ordersCopy =
+        orders &&
+        orders.filter((order) => {
+          const x = getDate(order).getTime()
+          return x > x0 && x < x1 // && y > y0 && y < y1
+        })
+      console.log([...ordersCopy])
+      setFilteredOrders(ordersCopy)
+    }
 
     // scales
     const xScale = useMemo(
       () =>
         scaleTime<number>({
           range: [50, xMax - 50],
-          domain: [
-            new Date(orders?.length && orders[0]?.createdTimestamp * 1000),
-            new Date()
-          ]
+          domain: extent(filteredOrders, getDate) as [Date, Date]
         }),
-      [xMax, orders]
+      [xMax, filteredOrders]
     )
-    // const xScale = useMemo(
-    //   () =>
-    //     scaleTime<number>({
-    //       range: [50, xMax - 50],
-    //       domain: [
-    //         new Date(
-    //           filteredOrders?.length &&
-    //             filteredOrders[0]?.createdTimestamp * 1000
-    //         ),
-    //         new Date()
-    //       ]
-    //     }),
-    //   [xMax, filteredOrders]
-    // )
-    // const xScale = useMemo(
-    //   () =>
-    //     scaleTime<number>({
-    //       range: [50, xMax - 50],
-    //       domain: [new Date(orders?.length && getDate(orders[0])), new Date()]
-    //     }),
-    //   [xMax, orders]
-    // )
-    // const xScale = useMemo(
-    //   () =>
-    //     scaleTime<number>({
-    //       range: [50, xMax - 50],
-    //       domain: extent(orders, getDate) as [Date, Date]
-    //     }),
-    //   [xMax, orders]
-    // )
-    // const xScale = useMemo(
-    //   () =>
-    //     scaleTime<number>({
-    //       range: [50, xMax - 50],
-    //       domain: [
-    //         new Date(
-    //           filteredOrders?.length &&
-    //             filteredOrders[0]?.createdTimestamp * 1000
-    //         ),
-    //         new Date(
-    //           filteredOrders?.length &&
-    //             filteredOrders[filteredOrders?.length]?.createdTimestamp * 1000
-    //         ) || new Date()
-    //       ]
-    //     }),
-    //   [xMax, filteredOrders]
-    // )
     const yScale = useMemo(
+      () =>
+        scaleLinear({
+          range: [yMax, 0],
+          nice: true
+        }),
+      [yMax]
+    )
+    const xBrushScale = useMemo(
+      () =>
+        scaleTime<number>({
+          range: [50, xMax - 50],
+          domain: extent(initialOrders, getDate) as [Date, Date]
+        }),
+      [xMax, initialOrders]
+    )
+    const yBrushScale = useMemo(
       () =>
         scaleLinear({
           range: [yMax, 0],
@@ -157,15 +131,89 @@ export default withTooltip<TimelineProps, Order>(
       }
     }
 
+    // We need to manually offset the handles for them to be rendered at the right position
+    const BrushHandle = ({
+      x,
+      height,
+      isBrushActive
+    }: BrushHandleRenderProps) => {
+      const pathWidth = 8
+      const pathHeight = 15
+      if (!isBrushActive) {
+        return null
+      }
+      return (
+        <Group left={x + pathWidth / 2} top={(height - pathHeight) / 2}>
+          <path
+            fill="#f2f2f2"
+            d="M -4.5 0.5 L 3.5 0.5 L 3.5 15.5 L -4.5 15.5 L -4.5 0.5 M -1.5 4 L -1.5 12 M 0.5 4 L 0.5 12"
+            stroke="#999999"
+            strokeWidth="1"
+            style={{ cursor: 'ew-resize' }}
+          />
+        </Group>
+      )
+    }
+
     return (
       <div>
         <svg width={width} height={height}>
           <LinearGradient id="stroke" from="#ff00a5" to="#999999" />
           <rect fill="url('#stroke')" width="100%" height="100%" rx={14} />
-          {orders?.map((order: Order, i) => {
+          {initialOrders.map((order: Order, i) => {
             return (
-              <Group top={height / 3} key={`dot-${i}`}>
-                {/* {console.log(getDate(order))} */}
+              <Group top={height / 4} key={`filtered-dot-${i}`}>
+                <circle
+                  key={`${i}`}
+                  r={parseFloat(order.amount) * 5}
+                  cx={xBrushScale(getDate(order))}
+                  cy={yBrushScale(getY(order))}
+                  stroke="rgba(33,33,33,0.5)"
+                />
+              </Group>
+            )
+          })}
+          <AxisBottom
+            left={0}
+            top={height / 4 + 30}
+            scale={xBrushScale}
+            numTicks={5}
+            stroke="#ffffff"
+            tickStroke="#ffffff"
+            tickLabelProps={() => axisBottomTickLabelProps}
+          />
+          <Group top={70}>
+            <PatternLines
+              id={'brush_pattern'}
+              height={height / 4}
+              width={width}
+              stroke={'f6acc8'}
+              strokeWidth={1}
+              orientation={['diagonal']}
+            />
+            <Brush
+              xScale={xBrushScale}
+              yScale={yBrushScale}
+              width={width}
+              height={height / 4}
+              margin={{ top: 200 }}
+              handleSize={8}
+              innerRef={brushRef}
+              resizeTriggerAreas={['left', 'right']}
+              brushDirection="horizontal"
+              onChange={onBrushChange}
+              onClick={() => setFilteredOrders(orders)}
+              selectedBoxStyle={{
+                fill: `url(#${'brush_pattern'})`,
+                stroke: 'black'
+              }}
+              useWindowMoveEvents
+              renderBrushHandle={(props) => <BrushHandle {...props} />}
+            />
+          </Group>
+          {filteredOrders.map((order: Order, i) => {
+            return (
+              <Group top={(4 * height) / 7} key={`regular-dot-${i}`}>
                 <circle
                   key={`${i}`}
                   r={parseFloat(order.amount) * 5}
@@ -174,7 +222,7 @@ export default withTooltip<TimelineProps, Order>(
                   stroke="rgba(33,33,33,0.5)"
                   fill={tooltipData === order ? 'white' : '#000000'}
                   onMouseOver={() => {
-                    const top = height / 2 - yScale(getY(order)) + 10
+                    const top = height - 110
                     const left = xScale(getDate(order))
                     showTooltip({
                       tooltipData: order,
@@ -189,7 +237,7 @@ export default withTooltip<TimelineProps, Order>(
           })}
           <AxisBottom
             left={0}
-            top={height / 3 + 30}
+            top={(4 * height) / 7 + 30}
             scale={xScale}
             numTicks={5}
             stroke="#ffffff"

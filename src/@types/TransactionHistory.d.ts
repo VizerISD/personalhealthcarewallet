@@ -24,7 +24,7 @@ interface TransactionHistory {
     publishMarketFeeAddress: string
     publishMarketFeeToken: string
     publishMarketFeeAmount: string
-    orders: [Orders]
+    orders: Order[]
     dispensers: [
       {
         id: string

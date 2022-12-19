@@ -147,9 +147,14 @@ function AssetProvider({
         asset.chainId,
         asset.services[0].datatokenAddress
       )
+      const orders = transactionHistory.token.orders
+        .slice()
+        .sort((a, b) => a.createdTimestamp - b.createdTimestamp)
+
       setAsset((prevState) => ({
         ...prevState,
-        transactionHistory
+        transactionHistory,
+        orders
       }))
     }, [asset?.chainId, asset?.services])
 
