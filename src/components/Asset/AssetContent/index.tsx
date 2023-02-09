@@ -16,6 +16,7 @@ import content from '../../../../content/purgatory.json'
 import Web3 from 'web3'
 import Button from '@shared/atoms/Button'
 import IndividualUseVisualization from './IndividualUseVisualization'
+import TransactionHistoryVisualization from './TransactionHistoryVisualization'
 
 export default function AssetContent({
   asset
@@ -45,6 +46,17 @@ export default function AssetContent({
         <div className={styles.individualUse}>
           <h3>Individual Use Visualization</h3>
           <IndividualUseVisualization width={1125} height={400} events={true} />
+        </div>
+
+        <div className={styles.transactionHistory}>
+          <h3>Transaction History Visualization</h3>
+          <div>
+            <TransactionHistoryVisualization
+              width={1125}
+              height={400}
+              events={true}
+            />
+          </div>
         </div>
 
         <div>

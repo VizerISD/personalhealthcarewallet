@@ -59,6 +59,16 @@ async function getNames(
   return txhistory
 }
 
+// function convertDates(txhistory: TransactionHistory): TransactionHistory {
+//   for (let i = 0; i < txhistory.token.orders.length; i++) {
+//     txhistory.token.orders[i].createdTimestamp = new Date(
+//       txhistory.token.orders[i].createdTimestamp.valueOf() * 1000
+//     )
+//     console.log(txhistory.token.orders[i].createdTimestamp)
+//   }
+//   return txhistory
+// }
+
 export async function getTransactionHistory(
   chainId: number,
   datatokenAddress: string
@@ -85,7 +95,6 @@ export async function getTransactionHistory(
 
     console.log(`order size = ${txhistory.token.orders.length}`)
     console.log(`tx history query result: ${JSON.stringify(txhistory)}`)
-    console.log(`tx history data.id: ${txhistory.token.id}`)
     return txhistory
   } catch (error) {
     LoggerInstance.error('Error getting transaction history: ', error.message)

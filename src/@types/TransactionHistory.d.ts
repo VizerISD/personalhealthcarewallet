@@ -1,3 +1,21 @@
+interface Order {
+  tx: string
+  serviceIndex: number
+  createdTimestamp: number
+  payer: {
+    id: string
+    name: string
+  }
+  consumer: {
+    id: string
+    name: string
+  }
+  amount: string
+  estimatedUSDValue: string
+  lastPriceToken: string
+  lastPriceValue: string
+}
+
 interface TransactionHistory {
   token: {
     id: string
@@ -6,25 +24,7 @@ interface TransactionHistory {
     publishMarketFeeAddress: string
     publishMarketFeeToken: string
     publishMarketFeeAmount: string
-    orders: [
-      {
-        tx: string
-        serviceIndex: number
-        createdTimestamp: number
-        payer: {
-          id: string
-          name: string
-        }
-        consumer: {
-          id: string
-          name: string
-        }
-        amount: string
-        estimatedUSDValue: string
-        lastPriceToken: string
-        lastPriceValue: string
-      }
-    ]
+    orders: Order[]
     dispensers: [
       {
         id: string
