@@ -33,7 +33,7 @@ const axisLeftTickLabelProps = {
   fontFamily: 'Arial',
   fontSize: 10,
   textAnchor: 'end' as const,
-  fill: '#ffffff'
+  fill: '#02346d'
 }
 
 export default function IndividualUseVisualization({
@@ -70,7 +70,7 @@ export default function IndividualUseVisualization({
   return (
     <div>
       <svg width={width} height={height}>
-        <LinearGradient id="stroke" from="#ff00a5" to="#999999" />
+        <LinearGradient id="stroke" from="#58dfff" to="#ffffff" />
         <rect fill="url('#stroke')" width="100%" height="100%" rx={14} />
         <Group top={verticalMargin / 2}>
           {[...ids.keys()].map((d) => {
@@ -87,7 +87,7 @@ export default function IndividualUseVisualization({
                   y={barY}
                   width={barWidth}
                   height={barHeight}
-                  fill="rgba(180, 40, 180, 1)"
+                  fill="#3499d3"
                   onClick={() => {
                     if (events) alert(`Wallet Address: ${address}`)
                   }}
@@ -95,7 +95,7 @@ export default function IndividualUseVisualization({
                 <text
                   x={xScale(address) + barWidth / 2}
                   y={yMax - barHeight}
-                  fill="white"
+                  fill="#3499d3"
                   fontSize={12}
                   dx={'-2'}
                   dy={'-.33em'}
@@ -111,8 +111,8 @@ export default function IndividualUseVisualization({
             top={-10}
             scale={yScale}
             numTicks={5}
-            stroke="#ffffff"
-            tickStroke="#ffffff"
+            stroke="#02346d"
+            tickStroke="#02346d"
             tickLabelProps={() => axisLeftTickLabelProps}
             label="# of Transactions"
           />
@@ -120,8 +120,8 @@ export default function IndividualUseVisualization({
             top={285}
             scale={xScale}
             numTicks={20}
-            stroke="#ffffff"
-            tickStroke="#ffffff"
+            stroke="#02346d"
+            tickStroke="#02346d"
             label="Wallet Addresses"
           />
         </Group>
