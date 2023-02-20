@@ -27,12 +27,12 @@ const tooltipStyles = {
 }
 
 const axisBottomTickLabelProps = {
-  dx: '-0.25em',
+  dx: '1.5em',
   dy: '0.25em',
   fontFamily: 'Arial',
-  fontSize: 10,
+  fontSize: 15,
   textAnchor: 'end' as const,
-  fill: '#ffffff'
+  fill: '#02346d'
 }
 
 export type TimelineProps = {
@@ -168,7 +168,8 @@ export default withTooltip<TimelineProps, Order>(
                   r={parseFloat(order.amount) * 5}
                   cx={xBrushScale(getDate(order))}
                   cy={yBrushScale(getY(order))}
-                  stroke="rgba(33,33,33,0.5)"
+                  stroke="#297aa8"
+                  fill="#3499d3"
                 />
               </Group>
             )
@@ -178,8 +179,8 @@ export default withTooltip<TimelineProps, Order>(
             top={height / 4 + 30}
             scale={xBrushScale}
             numTicks={5}
-            stroke="#ffffff"
-            tickStroke="#ffffff"
+            stroke="#02346d"
+            tickStroke="#02346d"
             tickLabelProps={() => axisBottomTickLabelProps}
           />
           <Group top={70}>
@@ -205,7 +206,7 @@ export default withTooltip<TimelineProps, Order>(
               onClick={() => setFilteredOrders(orders)}
               selectedBoxStyle={{
                 fill: `url(#${'brush_pattern'})`,
-                stroke: 'black'
+                stroke: 'white'
               }}
               useWindowMoveEvents
               renderBrushHandle={(props) => <BrushHandle {...props} />}
@@ -219,8 +220,8 @@ export default withTooltip<TimelineProps, Order>(
                   r={parseFloat(order.amount) * 5}
                   cx={xScale(getDate(order))}
                   cy={yScale(getY(order))}
-                  stroke="rgba(33,33,33,0.5)"
-                  fill={tooltipData === order ? 'white' : '#000000'}
+                  stroke="#297aa8"
+                  fill={tooltipData === order ? 'white' : '#3499d3'}
                   onMouseOver={() => {
                     const top = height - 110
                     const left = xScale(getDate(order))
@@ -240,8 +241,8 @@ export default withTooltip<TimelineProps, Order>(
             top={(4 * height) / 7 + 30}
             scale={xScale}
             numTicks={5}
-            stroke="#ffffff"
-            tickStroke="#ffffff"
+            stroke="#02346d"
+            tickStroke="#02346d"
             tickLabelProps={() => axisBottomTickLabelProps}
           />
         </svg>
