@@ -4,7 +4,11 @@ import { scaleBand, scaleLinear } from '@visx/scale'
 import { Bar } from '@visx/shape'
 import { Group } from '@visx/group'
 import { useAsset } from '@context/Asset'
-import { AxisBottom, AxisLeft, AxisTop } from '@visx/axis'
+import { AxisBottom, AxisLeft, TicksRendererProps } from '@visx/axis'
+import Publisher, { PublisherProps } from '@shared/Publisher'
+import { Scale } from '@visx/brush/lib/types'
+import { accountTruncate } from '@utils/web3'
+import Link from 'next/link'
 
 const verticalMargin = 120
 
@@ -119,6 +123,28 @@ export default function IndividualUseVisualization({
           <AxisBottom
             top={285}
             scale={xScale}
+            tickFormat={(val: string) => accountTruncate(val)}
+            // tickComponent={(tickRendererProps: TicksRendererProps) => {
+            //   ;<Publisher account={accountTruncate(val)} />
+            // }}
+            // tickComponent={(val: string) => (
+            //   <div>
+            //     <Link href={`/profile/${accountTruncate(val)}`}>
+            //       <a title="Show profile page.">{accountTruncate(val)}</a>
+            //     </Link>
+            //   </div>
+            // )}
+            // ticksComponent={[...ids.keys()].map((d: string) => (
+            //   <Publisher key={`tick-${d}`} account={d} />
+            // ))}
+            // tickComponent={(props: TickRendererProps) => (
+            //   <Publisher account={props.x} />
+            // )}
+            // ticksComponent={(scale: TicksRendererProps<Scale>) => (
+            //   <Publisher
+            //     account={'0x05c02a63f7c04dB0c1a73e4B000b3A80f8613E56'}
+            //   />
+            // )}
             numTicks={20}
             stroke="#02346d"
             tickStroke="#02346d"
