@@ -81,8 +81,15 @@ export default function IndividualUseVisualization({
   return (
     <div>
       <svg width={width} height={height}>
-        <LinearGradient id="stroke" from="#58dfff" to="#ffffff" />
-        <rect fill="url('#stroke')" width="100%" height="100%" rx={14} />
+        <LinearGradient id="stroke" from="#e6faff" to="#ffffff" />
+        <rect
+          fill="url('#stroke')"
+          strokeWidth={1}
+          stroke="#e2e2e2"
+          width="100%"
+          height="100%"
+          rx={4}
+        />
         <Group top={verticalMargin / 2}>
           {[...ids.keys()].slice(0, maxBarAmount).map((d) => {
             const address = d

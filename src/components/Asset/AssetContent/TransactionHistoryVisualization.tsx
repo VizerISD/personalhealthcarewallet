@@ -158,8 +158,15 @@ export default withTooltip<TimelineProps, Order>(
     return (
       <div>
         <svg width={width} height={height}>
-          <LinearGradient id="stroke" from="#ff00a5" to="#999999" />
-          <rect fill="url('#stroke')" width="100%" height="100%" rx={14} />
+          <LinearGradient id="stroke" from="#e6faff" to="#ffffff" />
+          <rect
+            fill="url('#stroke')"
+            strokeWidth={1}
+            stroke="#e2e2e2"
+            width="100%"
+            height="100%"
+            rx={4}
+          />
           {initialOrders.map((order: Order, i) => {
             return (
               <Group top={height / 4} key={`filtered-dot-${i}`}>

@@ -50,13 +50,11 @@ export default function AssetContent({
 
         <div className={styles.transactionHistory}>
           <h3>Transaction History Visualization</h3>
-          <div>
-            <TransactionHistoryVisualization
-              width={1125}
-              height={400}
-              events={true}
-            />
-          </div>
+          <TransactionHistoryVisualization
+            width={1125}
+            height={400}
+            events={true}
+          />
         </div>
 
         <div>
