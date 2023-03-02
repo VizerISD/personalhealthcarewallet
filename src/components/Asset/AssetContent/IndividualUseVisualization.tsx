@@ -4,17 +4,9 @@ import { scaleBand, scaleLinear } from '@visx/scale'
 import { Bar } from '@visx/shape'
 import { Group } from '@visx/group'
 import { useAsset } from '@context/Asset'
-import {
-  AxisBottom,
-  AxisLeft,
-  TickRendererProps,
-  TicksRendererProps
-} from '@visx/axis'
-import Publisher, { PublisherProps } from '@shared/Publisher'
-import { Scale } from '@visx/brush/lib/types'
+import { AxisBottom, AxisLeft } from '@visx/axis'
 import { accountTruncate } from '@utils/web3'
 import Link from 'next/link'
-import { Text } from '@visx/text'
 
 const verticalMargin = 120
 const maxBarAmount = 10
