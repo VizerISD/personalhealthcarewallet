@@ -4,13 +4,20 @@ import { scaleBand, scaleLinear } from '@visx/scale'
 import { Bar } from '@visx/shape'
 import { Group } from '@visx/group'
 import { useAsset } from '@context/Asset'
-import { AxisBottom, AxisLeft, TicksRendererProps } from '@visx/axis'
+import {
+  AxisBottom,
+  AxisLeft,
+  TickRendererProps,
+  TicksRendererProps
+} from '@visx/axis'
 import Publisher, { PublisherProps } from '@shared/Publisher'
 import { Scale } from '@visx/brush/lib/types'
 import { accountTruncate } from '@utils/web3'
 import Link from 'next/link'
+import { Text } from '@visx/text'
 
 const verticalMargin = 120
+const maxBarAmount = 10
 
 function payerIDMap(txs: TransactionHistory) {
   const ids = new Map<string, number>()
@@ -37,7 +44,15 @@ const axisLeftTickLabelProps = {
   fontFamily: 'Arial',
   fontSize: 10,
   textAnchor: 'end' as const,
-  fill: '#02346d'
+  fill: 'black'
+}
+
+const axisLabelProps = {
+  textAnchor: 'middle',
+  fontFamily: 'Arial',
+  fontSize: 14,
+  fontWeight: 'bold',
+  fill: 'black'
 }
 
 export default function IndividualUseVisualization({
@@ -58,14 +73,14 @@ export default function IndividualUseVisualization({
   const yMax = height - 120
 
   const xScale = scaleBand<string>({
-    domain: [...ids.keys()], // x-coordinate data values
-    range: [20, xMax], // svg x-coordinates, svg x-coordinates increase left to right
+    domain: [...ids.keys()].slice(0, maxBarAmount), // x-coordinate data values
+    range: [20, xMax], // svg x-coordinates, increase left to right
     round: true,
     padding: 0.4
   })
   const yScale = scaleLinear({
     domain: [0, Math.max(...ids.values())], // y-coordinate data values
-    // svg y-coordinates, these increase from top to bottom so we reverse the order
+    // svg y-coordinates, increase from top to bottom. We reverse the order
     // so that minY in data space maps to graphHeight in svg y-coordinate space
     range: [yMax, 0],
     round: true
@@ -77,7 +92,7 @@ export default function IndividualUseVisualization({
         <LinearGradient id="stroke" from="#58dfff" to="#ffffff" />
         <rect fill="url('#stroke')" width="100%" height="100%" rx={14} />
         <Group top={verticalMargin / 2}>
-          {[...ids.keys()].map((d) => {
+          {[...ids.keys()].slice(0, maxBarAmount).map((d) => {
             const address = d
             const barWidth = xScale.bandwidth()
             const barHeight = yMax - (yScale(ids.get(address)) ?? 0)
@@ -99,9 +114,9 @@ export default function IndividualUseVisualization({
                 <text
                   x={xScale(address) + barWidth / 2}
                   y={yMax - barHeight}
-                  fill="#3499d3"
+                  textAnchor="middle"
+                  fill="#000000"
                   fontSize={12}
-                  dx={'-2'}
                   dy={'-.33em'}
                   style={{ fontFamily: 'arial' }}
                 >
@@ -112,43 +127,40 @@ export default function IndividualUseVisualization({
           })}
           <AxisLeft
             left={60}
-            top={-10}
             scale={yScale}
             numTicks={5}
-            stroke="#02346d"
-            tickStroke="#02346d"
+            stroke="#000000"
+            tickStroke="#000000"
             tickLabelProps={() => axisLeftTickLabelProps}
             label="# of Transactions"
+            labelProps={axisLabelProps} // Ocean Market removes textAnchor from props, but it still works
           />
           <AxisBottom
             top={285}
             scale={xScale}
-            tickFormat={(val: string) => accountTruncate(val)}
-            // tickComponent={(tickRendererProps: TicksRendererProps) => {
-            //   ;<Publisher account={accountTruncate(val)} />
-            // }}
-            // tickComponent={(val: string) => (
-            //   <div>
-            //     <Link href={`/profile/${accountTruncate(val)}`}>
-            //       <a title="Show profile page.">{accountTruncate(val)}</a>
-            //     </Link>
-            //   </div>
-            // )}
-            // ticksComponent={[...ids.keys()].map((d: string) => (
-            //   <Publisher key={`tick-${d}`} account={d} />
-            // ))}
-            // tickComponent={(props: TickRendererProps) => (
-            //   <Publisher account={props.x} />
-            // )}
-            // ticksComponent={(scale: TicksRendererProps<Scale>) => (
-            //   <Publisher
-            //     account={'0x05c02a63f7c04dB0c1a73e4B000b3A80f8613E56'}
-            //   />
-            // )}
-            numTicks={20}
+            tickComponent={(tickRendererProps) => {
+              return (
+                <Link href={`/profile/${tickRendererProps.formattedValue}`}>
+                  <a title="Show profile page.">
+                    <text
+                      x={tickRendererProps.x}
+                      y={tickRendererProps.y}
+                      textAnchor="middle"
+                      fontSize={10.5}
+                      fontWeight={'bold'}
+                      fill={'black'}
+                    >
+                      {accountTruncate(tickRendererProps.formattedValue)}
+                    </text>
+                  </a>
+                </Link>
+              )
+            }}
+            numTicks={maxBarAmount}
             stroke="#02346d"
             tickStroke="#02346d"
             label="Wallet Addresses"
+            labelProps={axisLabelProps} // Ocean Market removes textAnchor from props, but it still works
           />
         </Group>
       </svg>
