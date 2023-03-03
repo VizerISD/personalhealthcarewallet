@@ -1,0 +1,184 @@
+{
+  "accountAddresses": [
+    {
+      "accountAddress": "0x6dA9E6bfe0287E32944738d3b11254394773BfA8",
+      "abacAttributes": {
+        "subjectAttributes": {
+          "name": "Caroline",
+          "username": "crinks",
+          "department": "space",
+          "position": "astronaut",
+          "age": 25,
+          "oceanPermission": "datasets"
+        },
+        "objectAttributes": {
+          "location": "Knoxville",
+          "date": "03-01-2023",
+          "endpoint_addr": "0x1234"
+        }
+      }
+    },
+    {
+      "accountAddress": "0x3fB3D8cfe0287E32294638d3b11254349226CfB2",
+      "abacAttributes": {
+        "subjectAttributes": {
+          "name": "Ian",
+          "username": "i_an",
+          "department": "military",
+          "position": "developer",
+          "age": 30,
+          "oceanPermission": "algorithms"
+        },
+        "objectAttributes": {
+          "location": "Memphis",
+          "date": "03-02-2023",
+          "endpoint_addr": "0x5678"
+        }
+      }
+    },
+    {
+      "accountAddress": "0x2ff2C8cfe0287E3374655291811254349355CcA9",
+      "abacAttributes": {
+        "subjectAttributes": {
+          "name": "David",
+          "username": "the_david",
+          "department": "federal",
+          "position": "director",
+          "age": 55,
+          "oceanPermission": "datasets-and-algorithms"
+        },
+        "objectAttributes": {
+          "location": "Washington D.C.",
+          "date": "03-03-2023",
+          "endpoint_addr": "0x0001"
+        }
+      }
+    },
+    {
+      "accountAddress": "0x999AA2ffe0287E32294638d3b112543492558558",
+      "abacAttributes": {
+        "subjectAttributes": {
+          "name": "Hanson",
+          "username": "han_son",
+          "department": "space",
+          "position": "developer",
+          "age": 28,
+          "oceanPermission": "algorithms"
+        },
+        "objectAttributes": {
+          "location": "Boston",
+          "date": "03-01-2023",
+          "endpoint_addr": "0x2222"
+        }
+      }
+    },
+    {
+      "accountAddress": "0x246828cfe0287E322b87b8b7b112543492224682",
+      "abacAttributes": {
+        "subjectAttributes": {
+          "name": "Ashna",
+          "username": "ashna_22",
+          "department": "federal",
+          "position": "researcher",
+          "age": 32,
+          "oceanPermission": "datasets"
+        },
+        "objectAttributes": {
+          "location": "Atlanta",
+          "date": "03-03-2023",
+          "endpoint_addr": "0x2468"
+        }
+      }
+    },
+    {
+      "accountAddress": "0x7654C3dde0287E32294638d3b112543492267654",
+      "abacAttributes": {
+        "subjectAttributes": {
+          "name": "Gary",
+          "username": "g_ary",
+          "department": "federal",
+          "position": "director",
+          "age": 29,
+          "oceanPermission": "datasets-and-algorithms"
+        },
+        "objectAttributes": {
+          "location": "Knoxville",
+          "date": "03-02-2023",
+          "endpoint_addr": "0x8888"
+        }
+      }
+    },
+    {
+      "accountAddress": "0x123458cfe444bE32294638d3b112543492212345",
+      "abacAttributes": {
+        "subjectAttributes": {
+          "name": "Thomas",
+          "username": "thomAs",
+          "department": "federal",
+          "position": "developer",
+          "age": 35,
+          "oceanPermission": "algorithms"
+        },
+        "objectAttributes": {
+          "location": "Knoxville",
+          "date": "03-01-2023",
+          "endpoint_addr": "0x0002"
+        }
+      }
+    },
+    {
+      "accountAddress": "0x1134f6cfe0287E32294638d3b1125434cf111111",
+      "abacAttributes": {
+        "subjectAttributes": {
+          "name": "Ruoti",
+          "username": "professor_R",
+          "department": "military",
+          "position": "researcher",
+          "age": 33,
+          "oceanPermission": "datasets-and-algorithms"
+        },
+        "objectAttributes": {
+          "location": "Knoxville",
+          "date": "03-02-2023",
+          "endpoint_addr": "0x0003"
+        }
+      }
+    },
+    {
+      "accountAddress": "0x987654cfe0287E32294638d3b11254349cf99f62",
+      "abacAttributes": {
+        "subjectAttributes": {
+          "name": "Shadman",
+          "username": "shad_man",
+          "department": "federal",
+          "position": "researcher",
+          "age": 52,
+          "oceanPermission": "datasets"
+        },
+        "objectAttributes": {
+          "location": "Washington D.C.",
+          "date": "03-03-2023",
+          "endpoint_addr": "0x0004"
+        }
+      }
+    },
+    {
+      "accountAddress": "0x3fB3D8cfe0287E32294638d3b11254349226CfB2",
+      "abacAttributes": {
+        "subjectAttributes": {
+          "name": "Sally",
+          "username": "sall",
+          "department": "military",
+          "position": "director",
+          "age": 42,
+          "oceanPermission": "datasets-and-algorithms"
+        },
+        "objectAttributes": {
+          "location": "Boston",
+          "date": "03-03-2023",
+          "endpoint_addr": "0x0005"
+        }
+      }
+    }
+  ]
+}
