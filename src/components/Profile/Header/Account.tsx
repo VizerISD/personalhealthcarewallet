@@ -56,6 +56,7 @@ export default function Account({
               </ExplorerLink>
             ))}
         </p>
+        <p>{'test'}</p>
       </div>
     </div>
   )
