@@ -8,6 +8,14 @@ import Avatar from '@shared/atoms/Avatar'
 import styles from './Account.module.css'
 import { useProfile } from '@context/Profile'
 import { accountTruncate } from '@utils/web3'
+import accountAttributes from 'content/static_data/account_attributes.json'
+
+function getOceanPermission(accountAddress: string): string | undefined {
+  const account = accountAttributes.accountAddresses.find(
+    (address) => address.accountAddress === accountAddress
+  )
+  return account?.abacAttributes?.subjectAttributes?.oceanPermission
+}
 
 export default function Account({
   accountId
@@ -16,6 +24,7 @@ export default function Account({
 }): ReactElement {
   const { chainIds } = useUserPreferences()
   const { profile } = useProfile()
+  const oceanPermission = getOceanPermission(accountId)
 
   return (
     <div className={styles.account}>
@@ -56,7 +65,9 @@ export default function Account({
               </ExplorerLink>
             ))}
         </p>
-        <p>{'test'}</p>
+        {oceanPermission && (
+          <span className={styles.tag}>{oceanPermission}</span>
+        )}
       </div>
     </div>
   )
