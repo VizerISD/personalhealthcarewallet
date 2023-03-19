@@ -213,7 +213,7 @@ export default withTooltip<TimelineProps, Order>(
               onClick={() => setFilteredOrders(orders)}
               selectedBoxStyle={{
                 fill: `url(#${'brush_pattern'})`,
-                stroke: 'white'
+                stroke: 'black'
               }}
               useWindowMoveEvents
               renderBrushHandle={(props) => <BrushHandle {...props} />}
