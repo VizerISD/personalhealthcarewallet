@@ -67,3 +67,14 @@ See https://github.com/oceanprotocol/market/issues/1143 */
 .explorer svg:last-child {
   margin-left: calc(var(--spacer) / 12);
 }
+
+.tag {
+  display: inline-block;
+  padding: 4px 8px;
+  background-color: #ccc;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #333;
+  margin-right: 8px;
+}
