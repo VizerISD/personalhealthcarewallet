@@ -32,7 +32,7 @@ const axisBottomTickLabelProps = {
   fontFamily: 'Arial',
   fontSize: 15,
   textAnchor: 'end' as const,
-  fill: '#02346d'
+  fill: '#000000'
 }
 
 export type TimelineProps = {
@@ -158,7 +158,7 @@ export default withTooltip<TimelineProps, Order>(
     return (
       <div>
         <svg width={width} height={height}>
-          <LinearGradient id="stroke" from="#e6faff" to="#ffffff" />
+          <LinearGradient id="stroke" from="#ffefef" to="#ffffff" />
           <rect
             fill="url('#stroke')"
             strokeWidth={1}
@@ -175,8 +175,8 @@ export default withTooltip<TimelineProps, Order>(
                   r={parseFloat(order.amount) * 5}
                   cx={xBrushScale(getDate(order))}
                   cy={yBrushScale(getY(order))}
-                  stroke="#297aa8"
-                  fill="#3499d3"
+                  stroke="#990000"
+                  fill="#e44c4c"
                 />
               </Group>
             )
@@ -186,8 +186,8 @@ export default withTooltip<TimelineProps, Order>(
             top={height / 4 + 30}
             scale={xBrushScale}
             numTicks={5}
-            stroke="#02346d"
-            tickStroke="#02346d"
+            stroke="#990000"
+            tickStroke="#990000"
             tickLabelProps={() => axisBottomTickLabelProps}
           />
           <Group top={70}>
@@ -227,8 +227,8 @@ export default withTooltip<TimelineProps, Order>(
                   r={parseFloat(order.amount) * 5}
                   cx={xScale(getDate(order))}
                   cy={yScale(getY(order))}
-                  stroke="#297aa8"
-                  fill={tooltipData === order ? 'white' : '#3499d3'}
+                  stroke="#990000"
+                  fill={tooltipData === order ? 'white' : '#e44c4c'}
                   onMouseOver={() => {
                     const top = height - 110
                     const left = xScale(getDate(order))
@@ -248,8 +248,9 @@ export default withTooltip<TimelineProps, Order>(
             top={(4 * height) / 7 + 30}
             scale={xScale}
             numTicks={5}
-            stroke="#02346d"
-            tickStroke="#02346d"
+            stroke="#990000"
+            strokeWidth={1}
+            tickStroke="#990000"
             tickLabelProps={() => axisBottomTickLabelProps}
           />
         </svg>
