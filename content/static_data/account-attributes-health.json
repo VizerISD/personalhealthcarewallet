@@ -26,6 +26,15 @@
           "role": "Hospital"
         }
       }
+    },
+    {
+      "accountAddress": "0x14A388f1CB42eAA456Cb9fF7359ec0A9c441bE8c",
+      "abacAttributes": {
+        "subjectAttributes": {
+          "name": "Hanson Lam",
+          "role": "Surgeon General"
+        }
+      }
     }
   ]
 }
