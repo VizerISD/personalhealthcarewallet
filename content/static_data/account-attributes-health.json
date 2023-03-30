@@ -1,0 +1,31 @@
+{
+  "accountAddresses": [
+    {
+      "accountAddress": "0x6dA9E6bfe0287E3EB58726d3b1125442f343BfA8",
+      "abacAttributes": {
+        "subjectAttributes": {
+          "name": "Caroline",
+          "oceanPermission": "Doctor"
+        }
+      }
+    },
+    {
+      "accountAddress": "0x05c02a63f7c04dB0c1a73e4B000b3A80f8613E56",
+      "abacAttributes": {
+        "subjectAttributes": {
+          "name": "Ian",
+          "oceanPermission": "Patient"
+        }
+      }
+    },
+    {
+      "accountAddress": "0x47CE7F67C3CC0E4Eb445e63173D8649E01e6c964",
+      "abacAttributes": {
+        "subjectAttributes": {
+          "name": "David",
+          "oceanPermission": "Hospital"
+        }
+      }
+    }
+  ]
+}

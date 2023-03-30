@@ -8,7 +8,7 @@ import Avatar from '@shared/atoms/Avatar'
 import styles from './Account.module.css'
 import { useProfile } from '@context/Profile'
 import { accountTruncate } from '@utils/web3'
-import accountAttributes from 'content/static_data/account-attributes.json'
+import accountAttributes from 'content/static_data/account-attributes-health.json'
 
 function getOceanPermission(accountAddress: string): string | undefined {
   const account = accountAttributes.accountAddresses.find(
