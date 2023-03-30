@@ -10,11 +10,11 @@ import { useProfile } from '@context/Profile'
 import { accountTruncate } from '@utils/web3'
 import accountAttributes from 'content/static_data/account-attributes-health.json'
 
-function getOceanPermission(accountAddress: string): string | undefined {
+function getRole(accountAddress: string): string | undefined {
   const account = accountAttributes.accountAddresses.find(
     (address) => address.accountAddress === accountAddress
   )
-  return account?.abacAttributes?.subjectAttributes?.oceanPermission
+  return account?.abacAttributes?.subjectAttributes?.role
 }
 
 export default function Account({
@@ -24,7 +24,7 @@ export default function Account({
 }): ReactElement {
   const { chainIds } = useUserPreferences()
   const { profile } = useProfile()
-  const oceanPermission = getOceanPermission(accountId)
+  const role = getRole(accountId)
 
   return (
     <div className={styles.account}>
@@ -65,9 +65,7 @@ export default function Account({
               </ExplorerLink>
             ))}
         </p>
-        {oceanPermission && (
-          <span className={styles.tag}>{oceanPermission}</span>
-        )}
+        {role && <span className={styles.tag}>{role}</span>}
       </div>
     </div>
   )

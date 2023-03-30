@@ -5,7 +5,7 @@
       "abacAttributes": {
         "subjectAttributes": {
           "name": "Caroline",
-          "oceanPermission": "Doctor"
+          "role": "Doctor"
         }
       }
     },
@@ -14,7 +14,7 @@
       "abacAttributes": {
         "subjectAttributes": {
           "name": "Ian",
-          "oceanPermission": "Patient"
+          "role": "Patient"
         }
       }
     },
@@ -23,7 +23,7 @@
       "abacAttributes": {
         "subjectAttributes": {
           "name": "David",
-          "oceanPermission": "Hospital"
+          "role": "Hospital"
         }
       }
     }
