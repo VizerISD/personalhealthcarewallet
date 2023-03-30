@@ -81,7 +81,7 @@ export default function IndividualUseVisualization({
   return (
     <div>
       <svg width={width} height={height}>
-        <LinearGradient id="stroke" from="#e6faff" to="#ffffff" />
+        <LinearGradient id="stroke" from="#ffefef" to="#ffffff" />
         <rect
           fill="url('#stroke')"
           strokeWidth={1}
@@ -105,7 +105,7 @@ export default function IndividualUseVisualization({
                   y={barY}
                   width={barWidth}
                   height={barHeight}
-                  fill="#3499d3"
+                  fill="#e44c4c"
                   onClick={() => {
                     if (events) alert(`Wallet Address: ${address}`)
                   }}
@@ -156,8 +156,8 @@ export default function IndividualUseVisualization({
               )
             }}
             numTicks={maxBarAmount}
-            stroke="#02346d"
-            tickStroke="#02346d"
+            stroke="#000000"
+            tickStroke="#000000"
             label="Wallet Addresses"
             labelProps={axisLabelProps} // Ocean Market removes textAnchor from props, but it still works
           />
