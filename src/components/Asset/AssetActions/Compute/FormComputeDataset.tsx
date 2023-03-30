@@ -106,7 +106,9 @@ export default function FormStartCompute({
       )
       const extendedAlgoAsset: AssetExtended = {
         ...algorithmAsset,
-        accessDetails
+        accessDetails,
+        transactionHistory: undefined,
+        orders: []
       }
       setSelectedAlgorithm(extendedAlgoAsset)
     }
