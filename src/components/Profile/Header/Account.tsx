@@ -52,19 +52,6 @@ export default function Account({
             {accountId} <Copy text={accountId} />
           </code>
         )}
-        <p>
-          {accountId &&
-            chainIds.map((value) => (
-              <ExplorerLink
-                className={styles.explorer}
-                networkId={value}
-                path={`address/${accountId}`}
-                key={value}
-              >
-                <NetworkName networkId={value} />
-              </ExplorerLink>
-            ))}
-        </p>
         {role && <span className={styles.tag}>{role}</span>}
       </div>
     </div>
