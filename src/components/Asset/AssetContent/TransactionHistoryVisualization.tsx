@@ -17,6 +17,25 @@ import BaseBrush from '@visx/brush/lib/BaseBrush'
 import { BrushHandleRenderProps } from '@visx/brush/lib/BrushHandle'
 import { PatternLines } from '@visx/pattern'
 import { Brush } from '@visx/brush'
+import mockedAccessEvents from 'content/static_data/generic-token-access-events copy.json'
+
+const deniedEvents: Order[] = mockedAccessEvents.data.accessDenieds.map(
+  (obj) => ({
+    ...obj,
+    createdTimestamp: Number(obj.createdTimestamp),
+    amount: '1'
+  })
+)
+
+const grantedEvents: Order[] = mockedAccessEvents.data.accessGranteds.map(
+  (obj) => ({
+    ...obj,
+    createdTimestamp: Number(obj.createdTimestamp),
+    amount: '1'
+  })
+)
+
+const accessEvents: Order[] = [...deniedEvents, ...grantedEvents]
 
 // tooltip
 const tooltipStyles = {
@@ -53,18 +72,21 @@ export default withTooltip<TimelineProps, Order>(
     tooltipLeft = 0
   }: TimelineProps & WithTooltipProvidedProps<Order>) => {
     const brushRef = useRef<BaseBrush | null>(null)
-    const { asset } = useAsset()
-    const { orders } = asset
+    // const { asset } = useAsset()
+    // const { orders } = asset
 
     const [initialOrders, setInitialOrders] = useState([])
     const [filteredOrders, setFilteredOrders] = useState([])
 
     useEffect(() => {
-      orders && setInitialOrders(orders)
-    }, [orders])
+      accessEvents && setInitialOrders(accessEvents)
+    }, [])
     useEffect(() => {
-      orders && setFilteredOrders(orders)
-    }, [orders])
+      accessEvents && setFilteredOrders(accessEvents)
+    }, [])
+
+    console.log(`initial  orders: ${initialOrders}`)
+    console.log(`filtered orders: ${filteredOrders}`)
 
     // bounds
     const xMax = width - 30
@@ -79,14 +101,14 @@ export default withTooltip<TimelineProps, Order>(
       const { x0, x1 } = domain
       console.log(x0)
       console.log(x1)
-      const ordersCopy =
-        orders &&
-        orders.filter((order) => {
+      const accessEventsCopy =
+        accessEvents &&
+        accessEvents.filter((order) => {
           const x = getDate(order).getTime()
           return x > x0 && x < x1 // && y > y0 && y < y1
         })
-      console.log([...ordersCopy])
-      setFilteredOrders(ordersCopy)
+      console.log(`accessEventsCopy: ${[...accessEventsCopy]}`)
+      setFilteredOrders(accessEventsCopy)
     }
 
     // scales
@@ -126,7 +148,7 @@ export default withTooltip<TimelineProps, Order>(
     // event handlers
     const handleClearClick = () => {
       if (brushRef?.current) {
-        setFilteredOrders(orders)
+        setFilteredOrders(accessEvents)
         brushRef.current.reset()
       }
     }
@@ -175,8 +197,14 @@ export default withTooltip<TimelineProps, Order>(
                   r={parseFloat(order.amount) * 5}
                   cx={xBrushScale(getDate(order))}
                   cy={yBrushScale(getY(order))}
-                  stroke="#990000"
-                  fill="#e44c4c"
+                  stroke={
+                    order.estimatedUSDValue === 'Denied' ? '#990000' : '#004516'
+                  }
+                  fill={
+                    order.estimatedUSDValue === 'Denied'
+                      ? '#e44c4c'
+                      : 'darkgreen'
+                  }
                 />
               </Group>
             )
@@ -210,7 +238,7 @@ export default withTooltip<TimelineProps, Order>(
               resizeTriggerAreas={['left', 'right']}
               brushDirection="horizontal"
               onChange={onBrushChange}
-              onClick={() => setFilteredOrders(orders)}
+              onClick={() => setFilteredOrders(accessEvents)}
               selectedBoxStyle={{
                 fill: `url(#${'brush_pattern'})`,
                 stroke: 'black'
@@ -227,8 +255,22 @@ export default withTooltip<TimelineProps, Order>(
                   r={parseFloat(order.amount) * 5}
                   cx={xScale(getDate(order))}
                   cy={yScale(getY(order))}
-                  stroke="#990000"
-                  fill={tooltipData === order ? 'white' : '#e44c4c'}
+                  stroke={
+                    order.estimatedUSDValue === 'Denied' ? '#990000' : '#004516'
+                  }
+                  fill={
+                    tooltipData === order
+                      ? order.estimatedUSDValue === 'Denied'
+                        ? 'pink'
+                        : order.estimatedUSDValue === 'Granted'
+                        ? 'lightgreen'
+                        : 'darkgreen'
+                      : order.estimatedUSDValue === 'Denied'
+                      ? '#e44c4c'
+                      : order.estimatedUSDValue === 'Granted'
+                      ? 'darkgreen'
+                      : 'darkgreen'
+                  }
                   onMouseOver={() => {
                     const top = height - 110
                     const left = xScale(getDate(order))
@@ -270,24 +312,11 @@ export default withTooltip<TimelineProps, Order>(
               }}
             >
               <div>
-                <strong>Tx Id:</strong> {`${tooltipData.tx.slice(0, 10)}...`}
-              </div>
-              <div>
-                <strong>Payer Id:</strong>{' '}
+                <strong>Accessor: </strong>{' '}
                 {`${tooltipData.payer.id.slice(0, 8)}...`}
               </div>
               <div>
-                <strong>Consumer Id:</strong>{' '}
-                {`${tooltipData.consumer.id.slice(0, 8)}...`}
-              </div>
-              <div>
-                <strong>Amount:</strong> {tooltipData.amount}
-              </div>
-              <div>
-                <strong>USD Value:</strong> {tooltipData.estimatedUSDValue}
-              </div>
-              <div>
-                <strong>Time:</strong>
+                <strong>Date: </strong>
                 {new Date(tooltipData.createdTimestamp * 1000).toDateString()}
               </div>
             </TooltipWithBounds>

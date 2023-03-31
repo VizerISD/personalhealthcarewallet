@@ -1,19 +1,19 @@
 interface Order {
   tx: string
-  serviceIndex: number
+  serviceIndex?: number
   createdTimestamp: number
   payer: {
     id: string
     name: string
   }
-  consumer: {
+  consumer?: {
     id: string
     name: string
   }
   amount: string
-  estimatedUSDValue: string
-  lastPriceToken: string
-  lastPriceValue: string
+  estimatedUSDValue?: string
+  lastPriceToken?: string
+  lastPriceValue?: string
 }
 
 interface TransactionHistory {

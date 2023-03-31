@@ -1,0 +1,140 @@
+{
+  "data": {
+    "accessDenieds": [
+      {
+        "tx": "0x32013bac23dce22d54de396fae6ee4d5018e5207d29e42749b6f4e7d2beb27781b000000",
+        "payer": {
+          "id": "0x4fe6b923a710b155db175e0776a602a2c8958158",
+          "name": "Zacherie Sirett"
+        },
+        "obj_addr": "0x05c02a63f7c04dB0c1a73e4B000b3A80f8613E56",
+        "createdTimestamp": "1678298100",
+        "message": "Subject Not Found!",
+        "estimatedUSDValue": "Denied"
+      },
+      {
+        "tx": "0x32013bac23dce22d54de396fae6ee4d5018e5207d29e42749b6f4e7d2beb27781b000001",
+        "payer": {
+          "id": "0x4fe6b923a710b155db175e0776a602a2c8958158",
+          "name": "Zacherie Sirett"
+        },
+        "obj_addr": "0x05c02a63f7c04dB0c1a73e4B000b3A80f8613E56",
+        "createdTimestamp": "1678298200",
+        "message": "Neither from CGI nor from blockchain department",
+        "estimatedUSDValue": "Denied"
+      },
+      {
+        "tx": "0x32013bac23dce22d54de396fae6ee4d5018e5207d29e42749b6f4e7d2beb27781b000002",
+        "payer": {
+          "id": "0x4fe6b923a710b155db175e0776a602a2c8958158",
+          "name": "Zacherie Sirett"
+        },
+        "obj_addr": "0x149bc7ea1139bc71c25363257d73d8de90d84c4e",
+        "createdTimestamp": "1678298000",
+        "message": "From CGI, but not blockchain department",
+        "estimatedUSDValue": "Denied"
+      },
+      {
+        "tx": "0x32013bac23dce22d54de396fae6ee4d5018e5207d29e42749b6f4e7d2beb27781b000003",
+        "payer": {
+          "id": "0x4fe6b923a710b155db175e0776a602a2c8958158",
+          "name": "Zacherie Sirett"
+        },
+        "obj_addr": "0x149bc7ea1139bc71c25363257d73d8de90d84c4e",
+        "createdTimestamp": "1678297000",
+        "message": "From CGI, but not blockchain department",
+        "estimatedUSDValue": "Denied"
+      },
+      {
+        "tx": "0x32013bac23dce22d54de396fae6ee4d5018e5207d29e42749b6f4e7d2beb27781b000004",
+        "payer": {
+          "id": "0x4fe6b923a710b155db175e0776a602a2c8958158",
+          "name": "Zacherie Sirett"
+        },
+        "obj_addr": "0x05c02a63f7c04dB0c1a73e4B000b3A80f8613E56",
+        "createdTimestamp": "1678296000",
+        "message": "Neither from CGI nor from blockchain department",
+        "estimatedUSDValue": "Denied"
+      }
+    ],
+    "accessGranteds": [
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+        "payer": {
+          "id": "0x4fe6b923a710b155db175e0776a602a2c8958158",
+          "name": "Zacherie Sirett"
+        },
+        "obj_addr": "0x25c526dfaec3b743f256aa81ae080718665e9401",
+        "createdTimestamp": "1678301330",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e17",
+        "payer": {
+          "id": "0x4fe6b923a710b155db175e0776a602a2c8958158",
+          "name": "Zacherie Sirett"
+        },
+        "obj_addr": "0xca757bfbf46e2de1f171e1ebcc70c15fc0f28096",
+        "createdTimestamp": "1678301300",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e18",
+        "payer": {
+          "id": "0x4fe6b923a710b155db175e0776a602a2c8958158",
+          "name": "Zacherie Sirett"
+        },
+        "obj_addr": "0x25c526dfaec3b743f256aa81ae080718665e9401",
+        "createdTimestamp": "1678301030",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e19",
+        "payer": {
+          "id": "0x4fe6b923a710b155db175e0776a602a2c8958158",
+          "name": "Zacherie Sirett"
+        },
+        "obj_addr": "0xd3fa48aa65c6701f2cf56662f669fd6619799b71",
+        "createdTimestamp": "1678301000",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e20",
+        "payer": {
+          "id": "0x4fe6b923a710b155db175e0776a602a2c8958158",
+          "name": "Zacherie Sirett"
+        },
+        "obj_addr": "0x90106fa680af6fc1046e4183f91ea033d2380d46",
+        "createdTimestamp": "1678300500",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e21",
+        "payer": {
+          "id": "0x4fe6b923a710b155db175e0776a602a2c8958158",
+          "name": "Zacherie Sirett"
+        },
+        "obj_addr": "0x703185b291ccd8caa38158a085060b8342c6807b",
+        "createdTimestamp": "1678299900",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e22",
+        "payer": {
+          "id": "0x4fe6b923a710b155db175e0776a602a2c8958158",
+          "name": "Zacherie Sirett"
+        },
+        "obj_addr": "0x97e5c7aeb90c4bc5e3b0f33e71e8991af26a8760",
+        "createdTimestamp": "1678299000",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      }
+    ]
+  }
+}
