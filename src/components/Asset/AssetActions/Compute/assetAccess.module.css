@@ -1,6 +1,6 @@
-.search {
-  display: flex;
+.searchBox {
   position: relative;
+  width: 100%;
 }
 
 .button {
@@ -13,7 +13,7 @@
   position: absolute;
   padding: calc(var(--spacer) / 4);
   width: 100%;
-  right: 1px;
+  right: 10px;
   left: 1px;
   top: 1px;
   bottom: 1px;
@@ -26,13 +26,13 @@
 }
 
 .input {
-  font-size: 16px; /* prevent zoom in on input focus on mobile devices  */
+  font-size: 160%; /* prevent zoom in on input focus on mobile devices */
   background-color: transparent;
   height: 41px;
   margin: 0;
   outline: 0;
   padding-right: var(--spacer);
-  width: 0;
+  width: 10em;
   transition: none;
 }
 
@@ -63,14 +63,17 @@
 }
 
 .searchIcon {
+  position: relative;
   fill: currentColor;
   transition: 0.2s ease-out;
   width: var(--font-size-h5);
   height: var(--font-size-h5);
+  right: 10px;
 }
 
 .heading {
   margin-bottom: 0;
+  margin-top: 10px;
   font-size: 100;
 }
 
@@ -78,6 +81,7 @@
   justify-content: flex-start;
   display: flex;
   align-items: center;
+  background-color: #ffffff;
   border: black ridge 1px;
   border-radius: 10px;
   margin: 3px;
@@ -93,4 +97,51 @@
 
 .checkbox {
   composes: checkbox from '@shared/FormInput/InputRadio.module.css';
+}
+
+.scroll {
+  background: linear-gradient(to bottom, #ffefef, rgb(255, 255, 255));
+  border: black ridge 1px;
+  border-radius: 5px;
+  color: #fff;
+  height: 10rem;
+  width: 95%;
+  overflow-y: scroll;
+  margin-top: 10px;
+}
+
+.grantAccessButton {
+  font-size: 12;
+  font-weight: bold;
+  color: rgb(0, 160, 82);
+  background: rgb(246, 246, 246);
+  border-color: rgb(0, 160, 82);
+  border-radius: 10px;
+  display: flex;
+  position: relative;
+  right: 5px;
+  margin-left: auto;
+}
+
+.grantAccessButton:hover {
+  background-color: rgb(139, 255, 139);
+  color: rgb(0, 65, 0);
+}
+
+.revokeAccessButton {
+  font-size: 12;
+  font-weight: bold;
+  color: rgb(160, 0, 0);
+  background: rgb(246, 246, 246);
+  border-color: rgb(160, 0, 0);
+  border-radius: 10px;
+  display: flex;
+  position: relative;
+  right: 5px;
+  margin-left: auto;
+}
+
+.revokeAccessButton:hover {
+  background-color: rgb(255, 139, 139);
+  color: rgb(0, 65, 0);
 }

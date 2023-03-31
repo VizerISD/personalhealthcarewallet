@@ -35,7 +35,7 @@ import { getComputeFeedback } from '@utils/feedback'
 import { getDummyWeb3 } from '@utils/web3'
 import { initializeProviderForCompute } from '@utils/provider'
 import { useUserPreferences } from '@context/UserPreferences'
-import UserSearchBar from './userSearchBar'
+import AssetAccess from './assetAccess'
 
 const refreshInterval = 10000 // 10 sec.
 export default function Compute({
@@ -383,5 +383,5 @@ export default function Compute({
     }
   }
 
-  return <UserSearchBar></UserSearchBar>
+  return <AssetAccess></AssetAccess>
 }

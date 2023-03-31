@@ -16,6 +16,7 @@ import { useFormikContext } from 'formik'
 import { FormPublishData } from 'src/components/Publish/_types'
 import { getTokenBalanceFromSymbol } from '@utils/web3'
 import AssetStats from './AssetStats'
+import AssetAccess from './Compute/assetAccess'
 
 export default function AssetActions({
   asset
@@ -150,7 +151,10 @@ export default function AssetActions({
     </>
   )
 
-  const tabs: TabsItem[] = [{ title: 'Grant Access', content: UseContent }]
+  const sample = <AssetAccess></AssetAccess>
+
+  // const tabs: TabsItem[] = [{ title: 'Grant Access', content: UseContent }]
+  const tabs: TabsItem[] = [{ title: 'Asset Access', content: sample }]
 
   return (
     <>
