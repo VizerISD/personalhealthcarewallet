@@ -5,6 +5,14 @@ import Loader from '@shared/atoms/Loader'
 import styles from './Account.module.css'
 import { useWeb3 } from '@context/Web3'
 import Avatar from '@shared/atoms/Avatar'
+import accountAttributes from 'content/static_data/account-attributes-health.json'
+
+function getName(accountAddress: string): string | undefined {
+  const account = accountAttributes.accountAddresses.find(
+    (address) => address.accountAddress === accountAddress
+  )
+  return account?.abacAttributes?.subjectAttributes?.name
+}
 
 // Forward ref for Tippy.js
 // eslint-disable-next-line
@@ -32,8 +40,8 @@ const Account = React.forwardRef((props, ref: any) => {
       onClick={(e) => e.preventDefault()}
     >
       <Avatar accountId={accountId} src={accountEnsAvatar} />
-      <span className={styles.address} title={accountId}>
-        {accountTruncate(accountEns || accountId)}
+      <span className={styles.address} title={getName(accountId)}>
+        {getName(accountId)}
       </span>
       <Caret aria-hidden="true" className={styles.caret} />
     </button>

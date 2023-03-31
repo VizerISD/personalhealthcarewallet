@@ -17,6 +17,13 @@ function getRole(accountAddress: string): string | undefined {
   return account?.abacAttributes?.subjectAttributes?.role
 }
 
+function getName(accountAddress: string): string | undefined {
+  const account = accountAttributes.accountAddresses.find(
+    (address) => address.accountAddress === accountAddress
+  )
+  return account?.abacAttributes?.subjectAttributes?.name
+}
+
 export default function Account({
   accountId
 }: {
@@ -25,6 +32,10 @@ export default function Account({
   const { chainIds } = useUserPreferences()
   const { profile } = useProfile()
   const role = getRole(accountId)
+  const name = getName(accountId)
+
+  console.log('profile.name:\n')
+  console.log(name)
 
   return (
     <div className={styles.account}>
@@ -41,17 +52,7 @@ export default function Account({
       </figure>
 
       <div>
-        <h3 className={styles.name}>
-          {profile?.name || accountTruncate(accountId)}
-        </h3>
-        {accountId && (
-          <code
-            className={styles.accountId}
-            title={profile?.name ? accountId : null}
-          >
-            {accountId} <Copy text={accountId} />
-          </code>
-        )}
+        <h3 className={styles.name}>{name || accountTruncate(accountId)}</h3>
         {role && <span className={styles.tag}>{role}</span>}
       </div>
     </div>
