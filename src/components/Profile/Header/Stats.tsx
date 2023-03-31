@@ -55,50 +55,8 @@ export default function Stats({
 
   return (
     <div className={styles.stats}>
-      <NumberUnit
-        label="Total Sales"
-        value={
-          totalSales > 0 ? (
-            <Conversion
-              price={totalSales}
-              symbol={'ocean'}
-              hideApproximateSymbol
-            />
-          ) : (
-            '0'
-          )
-        }
-      />
-      <NumberUnit
-        label={`Sale${sales === 1 ? '' : 's'}`}
-        value={sales < 0 ? 0 : sales}
-      />
-      <NumberUnit label="Published" value={assetsTotal} />
-      <NumberUnit
-        label={
-          lockedOcean === 0 && accountId === web3.accountId ? (
-            <Button
-              className={styles.link}
-              style="text"
-              href="https://df.oceandao.org"
-            >
-              Lock OCEAN
-            </Button>
-          ) : (
-            <>
-              <PriceUnit price={lockedOcean} symbol="OCEAN" /> locked
-            </>
-          )
-        }
-        value={
-          <Conversion
-            price={lockedOcean > 0 ? lockedOcean : 0}
-            symbol="OCEAN"
-            hideApproximateSymbol
-          />
-        }
-      />
-      <NumberUnit label="Organization" value="N/A" />
+      <NumberUnit label="Number of Medical Records" value="0" />
+      <NumberUnit label="Number of People with Access" value="0" />
     </div>
   )
 }
