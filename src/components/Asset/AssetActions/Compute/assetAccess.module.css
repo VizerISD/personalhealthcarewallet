@@ -1,0 +1,147 @@
+.searchBox {
+  position: relative;
+  width: 100%;
+}
+
+.button {
+  color: var(--color-secondary);
+  cursor: pointer;
+  background: var(--background-content);
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  position: absolute;
+  padding: calc(var(--spacer) / 4);
+  width: 100%;
+  right: 10px;
+  left: 1px;
+  top: 1px;
+  bottom: 1px;
+  z-index: -1;
+}
+
+.button:hover,
+.button:focus {
+  color: var(--font-color-text);
+}
+
+.input {
+  font-size: 160%; /* prevent zoom in on input focus on mobile devices */
+  background-color: transparent;
+  height: 41px;
+  margin: 0;
+  outline: 0;
+  padding-right: var(--spacer);
+  width: 10em;
+  transition: none;
+}
+
+.input:focus {
+  width: calc(100% - var(--spacer));
+  background-color: var(--background-content);
+  position: fixed;
+  left: calc(var(--spacer) / 2);
+  right: 0;
+  z-index: 2;
+}
+
+@media screen and (min-width: 78rem) {
+  .input,
+  .input:focus {
+    width: auto;
+    position: relative;
+    left: initial;
+    right: initial;
+  }
+
+  .button {
+    width: auto;
+    left: auto;
+    background: none;
+    z-index: 3;
+  }
+}
+
+.searchIcon {
+  position: relative;
+  fill: currentColor;
+  transition: 0.2s ease-out;
+  width: var(--font-size-h5);
+  height: var(--font-size-h5);
+  right: 10px;
+}
+
+.heading {
+  margin-bottom: 0;
+  margin-top: 10px;
+  font-size: 100;
+}
+
+.box {
+  justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border: black ridge 1px;
+  border-radius: 10px;
+  margin: 3px;
+  width: 20rem;
+  height: 2rem;
+  padding-left: 10px;
+}
+
+.actionsCenter {
+  margin: auto;
+  display: block;
+}
+
+.checkbox {
+  composes: checkbox from '@shared/FormInput/InputRadio.module.css';
+}
+
+.scroll {
+  background: linear-gradient(to bottom, #ffefef, rgb(255, 255, 255));
+  border: black ridge 1px;
+  border-radius: 5px;
+  color: #fff;
+  height: 10rem;
+  width: 95%;
+  overflow-y: scroll;
+  margin-top: 10px;
+}
+
+.grantAccessButton {
+  font-size: 12;
+  font-weight: bold;
+  color: rgb(0, 160, 82);
+  background: rgb(246, 246, 246);
+  border-color: rgb(0, 160, 82);
+  border-radius: 10px;
+  display: flex;
+  position: relative;
+  right: 5px;
+  margin-left: auto;
+}
+
+.grantAccessButton:hover {
+  background-color: rgb(139, 255, 139);
+  color: rgb(0, 65, 0);
+}
+
+.revokeAccessButton {
+  font-size: 12;
+  font-weight: bold;
+  color: rgb(160, 0, 0);
+  background: rgb(246, 246, 246);
+  border-color: rgb(160, 0, 0);
+  border-radius: 10px;
+  display: flex;
+  position: relative;
+  right: 5px;
+  margin-left: auto;
+}
+
+.revokeAccessButton:hover {
+  background-color: rgb(255, 139, 139);
+  color: rgb(0, 65, 0);
+}

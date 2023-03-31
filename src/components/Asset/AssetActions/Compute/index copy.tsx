@@ -15,9 +15,16 @@ import {
   unitsToAmount
 } from '@oceanprotocol/lib'
 import { toast } from 'react-toastify'
+import Price from '@shared/Price'
+import FileIcon from '@shared/FileIcon'
+import Alert from '@shared/atoms/Alert'
 import { useWeb3 } from '@context/Web3'
+import { Formik } from 'formik'
+import { getInitialValues, validationSchema } from './_constants'
+import FormStartComputeDataset from './FormComputeDataset'
 import styles from './index.module.css'
-import { getServiceByName } from '@utils/ddo'
+import SuccessConfetti from '@shared/SuccessConfetti'
+import { getServiceByName, secondsToString } from '@utils/ddo'
 import {
   isOrderable,
   getAlgorithmAssetSelectionList,
@@ -26,6 +33,9 @@ import {
   getComputeJobs
 } from '@utils/compute'
 import { AssetSelectionAsset } from '@shared/FormFields/AssetSelection'
+import AlgorithmDatasetsListForCompute from './AlgorithmDatasetsListForCompute'
+import ComputeHistory from './History'
+import ComputeJobs from '../../../Profile/History/ComputeJobs'
 import { useCancelToken } from '@hooks/useCancelToken'
 import { Decimal } from 'decimal.js'
 import { useAbortController } from '@hooks/useAbortController'
@@ -35,7 +45,6 @@ import { getComputeFeedback } from '@utils/feedback'
 import { getDummyWeb3 } from '@utils/web3'
 import { initializeProviderForCompute } from '@utils/provider'
 import { useUserPreferences } from '@context/UserPreferences'
-import AssetAccess from './assetAccess'
 
 const refreshInterval = 10000 // 10 sec.
 export default function Compute({
@@ -383,5 +392,113 @@ export default function Compute({
     }
   }
 
-  return <AssetAccess></AssetAccess>
+  return (
+    <>
+      <div
+        className={`${styles.info} ${
+          isUnsupportedPricing ? styles.warning : null
+        }`}
+      >
+        <FileIcon file={file} isLoading={fileIsLoading} small />
+        {isUnsupportedPricing ? (
+          <Alert
+            text={`No pricing schema available for this asset.`}
+            state="info"
+          />
+        ) : (
+          <Price
+            accessDetails={asset?.accessDetails}
+            orderPriceAndFees={datasetOrderPriceAndFees}
+            conversion
+            size="large"
+          />
+        )}
+      </div>
+
+      {isUnsupportedPricing ? null : asset.metadata.type === 'algorithm' ? (
+        <>
+          {asset.services[0].type === 'compute' && (
+            <Alert
+              text={
+                "This algorithm has been set to private by the publisher and can't be downloaded. You can run it against any allowed datasets though!"
+              }
+              state="info"
+            />
+          )}
+          <AlgorithmDatasetsListForCompute
+            algorithmDid={asset.id}
+            asset={asset}
+          />
+        </>
+      ) : (
+        <Formik
+          initialValues={getInitialValues()}
+          validateOnMount
+          validationSchema={validationSchema}
+          onSubmit={async (values) => {
+            if (!values.algorithm) return
+            await startJob()
+          }}
+        >
+          <FormStartComputeDataset
+            algorithms={algorithmList}
+            ddoListAlgorithms={ddoAlgorithmList}
+            selectedAlgorithmAsset={selectedAlgorithmAsset}
+            setSelectedAlgorithm={setSelectedAlgorithmAsset}
+            isLoading={isOrdering || isRequestingAlgoOrderPrice}
+            isComputeButtonDisabled={isComputeButtonDisabled}
+            hasPreviousOrder={validOrderTx !== undefined}
+            hasDatatoken={hasDatatoken}
+            dtBalance={dtBalance}
+            assetType={asset?.metadata.type}
+            assetTimeout={secondsToString(asset?.services[0].timeout)}
+            hasPreviousOrderSelectedComputeAsset={
+              validAlgorithmOrderTx !== undefined
+            }
+            hasDatatokenSelectedComputeAsset={hasAlgoAssetDatatoken}
+            oceanSymbol={
+              asset?.accessDetails?.baseToken?.symbol ||
+              selectedAlgorithmAsset?.accessDetails?.baseToken?.symbol ||
+              'OCEAN'
+            }
+            dtSymbolSelectedComputeAsset={
+              selectedAlgorithmAsset?.datatokens[0]?.symbol
+            }
+            dtBalanceSelectedComputeAsset={algorithmDTBalance}
+            selectedComputeAssetType="algorithm"
+            selectedComputeAssetTimeout={secondsToString(
+              selectedAlgorithmAsset?.services[0]?.timeout
+            )}
+            // lazy comment when removing pricingStepText
+            stepText={computeStatusText}
+            isConsumable={isConsumablePrice}
+            consumableFeedback={consumableFeedback}
+            datasetOrderPriceAndFees={datasetOrderPriceAndFees}
+            algoOrderPriceAndFees={algoOrderPriceAndFees}
+            providerFeeAmount={providerFeeAmount}
+            validUntil={computeValidUntil}
+          />
+        </Formik>
+      )}
+
+      <footer className={styles.feedback}>
+        {isOrdered && (
+          <SuccessConfetti success="Your job started successfully! Watch the progress below or on your profile." />
+        )}
+      </footer>
+      {accountId && asset?.accessDetails?.datatoken && (
+        <ComputeHistory
+          title="Your Compute Jobs"
+          refetchJobs={() => setRefetchJobs(!refetchJobs)}
+        >
+          <ComputeJobs
+            minimal
+            jobs={jobs}
+            isLoading={isLoadingJobs}
+            refetchJobs={() => setRefetchJobs(!refetchJobs)}
+          />
+        </ComputeHistory>
+      )}
+    </>
+  )
 }

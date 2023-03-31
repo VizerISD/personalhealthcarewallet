@@ -16,6 +16,7 @@ import { useFormikContext } from 'formik'
 import { FormPublishData } from 'src/components/Publish/_types'
 import { getTokenBalanceFromSymbol } from '@utils/web3'
 import AssetStats from './AssetStats'
+import AssetAccess from './Compute/assetAccess'
 
 export default function AssetActions({
   asset
@@ -126,6 +127,8 @@ export default function AssetActions({
     }
   }, [balance, accountId, asset?.accessDetails, dtBalance])
 
+  // Compute is the top half -- will become "Grant Access" with search bar
+  // Consume is the bottom half -- will become list of people with access + revoke options
   const UseContent = (
     <>
       {isCompute ? (
@@ -148,7 +151,10 @@ export default function AssetActions({
     </>
   )
 
-  const tabs: TabsItem[] = [{ title: 'Use', content: UseContent }]
+  const sample = <AssetAccess></AssetAccess>
+
+  // const tabs: TabsItem[] = [{ title: 'Grant Access', content: UseContent }]
+  const tabs: TabsItem[] = [{ title: 'Asset Access', content: sample }]
 
   return (
     <>
