@@ -312,8 +312,7 @@ export default withTooltip<TimelineProps, Order>(
               }}
             >
               <div>
-                <strong>Accessor: </strong>{' '}
-                {`${tooltipData.payer.id.slice(0, 8)}...`}
+                <strong>Accessor: </strong> {`${tooltipData.payer.name}`}
               </div>
               <div>
                 <strong>Date: </strong>
