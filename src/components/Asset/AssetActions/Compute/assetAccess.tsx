@@ -14,10 +14,12 @@ export type DataProps = {
 }
 
 const doctorData: DataProps[] = Data.map((obj) => ({ ...obj, visible: true }))
+const firstEntry: DataProps = doctorData[0]
+doctorData[0].visible = false
 
 export default function AssetAccess(): ReactElement {
   const [searchValue, setSearchValue] = useState('')
-  const [accessList, setAccessList] = useState([])
+  const [accessList, setAccessList] = useState([firstEntry])
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setSearchValue(e.target.value)

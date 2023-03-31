@@ -17,7 +17,7 @@ import BaseBrush from '@visx/brush/lib/BaseBrush'
 import { BrushHandleRenderProps } from '@visx/brush/lib/BrushHandle'
 import { PatternLines } from '@visx/pattern'
 import { Brush } from '@visx/brush'
-import mockedAccessEvents from 'content/static_data/generic-token-access-events copy.json'
+import mockedAccessEvents from 'content/static_data/mocked-access-events.json'
 
 const deniedEvents: Order[] = mockedAccessEvents.data.accessDenieds.map(
   (obj) => ({
