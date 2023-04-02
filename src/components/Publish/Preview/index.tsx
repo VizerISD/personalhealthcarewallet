@@ -43,7 +43,6 @@ export default function Preview(): ReactElement {
       <h2 className={styles.previewTitle}>Preview</h2>
 
       <h3 className={styles.assetTitle}>{values.metadata.name}</h3>
-      {asset && <AssetContent asset={asset} />}
     </div>
   )
 }
