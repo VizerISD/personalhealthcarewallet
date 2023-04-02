@@ -44,7 +44,7 @@ export default function AssetContent({
 
       <article className={styles.grid}>
         <div className={styles.individualUse}>
-          <h3>Individual Use Visualization</h3>
+          <h3>Most Frequent Accessors</h3>
           <IndividualUseVisualization width={1125} height={400} events={true} />
         </div>
 

@@ -180,7 +180,7 @@ export default function IndividualUseVisualization({
             numTicks={maxBarAmount}
             stroke="#000000"
             tickStroke="#000000"
-            label="Wallet Addresses"
+            label="Accessor Names"
             labelProps={axisLabelProps} // Ocean Market removes textAnchor from props, but it still works
           />
         </Group>
