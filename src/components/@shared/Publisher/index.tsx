@@ -4,11 +4,19 @@ import Link from 'next/link'
 import { accountTruncate } from '@utils/web3'
 import { getEnsName } from '@utils/ens'
 import { useIsMounted } from '@hooks/useIsMounted'
+import accountAttributes from 'content/static_data/account-attributes-health.json'
 
 export interface PublisherProps {
   account: string
   minimal?: boolean
   className?: string
+}
+
+function getOwner(accountAddress: string): string | undefined {
+  const account = accountAttributes.accountAddresses.find(
+    (address) => address.accountAddress === accountAddress
+  )
+  return account?.abacAttributes?.subjectAttributes?.name
 }
 
 export default function Publisher({
@@ -18,6 +26,7 @@ export default function Publisher({
 }: PublisherProps): ReactElement {
   const isMounted = useIsMounted()
   const [name, setName] = useState(accountTruncate(account))
+  const owner = getOwner(account)
 
   useEffect(() => {
     if (!account || account === '') return
@@ -38,11 +47,11 @@ export default function Publisher({
   return (
     <div className={`${styles.publisher} ${className || ''}`}>
       {minimal ? (
-        name
+        owner
       ) : (
         <>
           <Link href={`/profile/${account}`}>
-            <a title="Show profile page.">{name}</a>
+            <a title="Show profile page.">{owner}</a>
           </Link>
         </>
       )}
