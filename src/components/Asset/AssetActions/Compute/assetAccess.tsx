@@ -89,8 +89,10 @@ export default function AssetAccess(): ReactElement {
               className={styles.box}
               key={entity.first_name + entity.last_name}
             >
-              <div style={{ color: 'black', fontSize: 14 }}>
-                Dr. {entity.first_name} {entity.last_name}
+              <div className={styles.accountName}>
+                <a href={`../profile/${entity.wallet_address}`}>
+                  Dr. {entity.first_name} {entity.last_name}
+                </a>{' '}
               </div>
               <button
                 className={styles.grantAccessButton}
@@ -112,8 +114,10 @@ export default function AssetAccess(): ReactElement {
               className={styles.box}
               key={entity.first_name + entity.last_name}
             >
-              <div style={{ color: 'black', fontSize: 14 }}>
-                Dr. {entity.first_name} {entity.last_name}
+              <div className={styles.accountName}>
+                <a href={`../profile/${entity.wallet_address}`}>
+                  Dr. {entity.first_name} {entity.last_name}
+                </a>
               </div>
               <button
                 className={styles.revokeAccessButton}

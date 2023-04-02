@@ -145,3 +145,12 @@
   background-color: rgb(255, 139, 139);
   color: rgb(0, 65, 0);
 }
+
+.accountName {
+  color: black;
+  fontsize: 14;
+}
+
+.accountName:hover {
+  font-weight: bold;
+}
