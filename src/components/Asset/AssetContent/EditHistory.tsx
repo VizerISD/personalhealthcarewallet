@@ -89,7 +89,6 @@ export default function EditHistory({
             <ExplorerLink networkId={asset?.chainId} path={`/tx/${receipt.tx}`}>
               {getUpdateType(receipt.type)}{' '}
               <Time date={`${receipt.timestamp}`} relative isUnix />
-              {`, type = ${receipt.type}, transaction hash = ${receipt.id}`}
             </ExplorerLink>
           </li>
         ))}
