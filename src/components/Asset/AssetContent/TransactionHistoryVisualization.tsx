@@ -18,6 +18,8 @@ import { BrushHandleRenderProps } from '@visx/brush/lib/BrushHandle'
 import { PatternLines } from '@visx/pattern'
 import { Brush } from '@visx/brush'
 import mockedAccessEvents from 'content/static_data/mocked-access-events.json'
+// import CrossIcon from '@images/cross.svg'
+// import CheckmarkIcon from '@images/checkmark2.svg'
 
 const deniedEvents: Order[] = mockedAccessEvents.data.accessDenieds.map(
   (obj) => ({
@@ -40,9 +42,9 @@ const accessEvents: Order[] = [...deniedEvents, ...grantedEvents]
 // tooltip
 const tooltipStyles = {
   ...defaultStyles,
-  background: '#3b6978',
-  border: '1px solid white',
-  color: 'white'
+  background: 'white',
+  border: '1px solid black',
+  color: 'black'
 }
 
 const axisBottomTickLabelProps = {
@@ -112,7 +114,7 @@ export default withTooltip<TimelineProps, Order>(
     }
 
     // scales
-    const xScale = useMemo(
+    const xFilteredViewScale = useMemo(
       () =>
         scaleTime<number>({
           range: [50, xMax - 50],
@@ -120,7 +122,7 @@ export default withTooltip<TimelineProps, Order>(
         }),
       [xMax, filteredOrders]
     )
-    const yScale = useMemo(
+    const yFilteredViewScale = useMemo(
       () =>
         scaleLinear({
           range: [yMax, 0],
@@ -189,72 +191,14 @@ export default withTooltip<TimelineProps, Order>(
             height="100%"
             rx={4}
           />
-          {initialOrders.map((order: Order, i) => {
+          {filteredOrders.map((order: Order, i) => {
             return (
               <Group top={height / 4} key={`filtered-dot-${i}`}>
                 <circle
                   key={`${i}`}
-                  r={parseFloat(order.amount) * 5}
-                  cx={xBrushScale(getDate(order))}
-                  cy={yBrushScale(getY(order))}
-                  stroke={
-                    order.estimatedUSDValue === 'Denied' ? '#990000' : '#004516'
-                  }
-                  fill={
-                    order.estimatedUSDValue === 'Denied'
-                      ? '#e44c4c'
-                      : 'darkgreen'
-                  }
-                />
-              </Group>
-            )
-          })}
-          <AxisBottom
-            left={0}
-            top={height / 4 + 30}
-            scale={xBrushScale}
-            numTicks={5}
-            stroke="#990000"
-            tickStroke="#990000"
-            tickLabelProps={() => axisBottomTickLabelProps}
-          />
-          <Group top={70}>
-            <PatternLines
-              id={'brush_pattern'}
-              height={height / 4}
-              width={width}
-              stroke={'f6acc8'}
-              strokeWidth={1}
-              orientation={['diagonal']}
-            />
-            <Brush
-              xScale={xBrushScale}
-              yScale={yBrushScale}
-              width={width}
-              height={height / 4}
-              margin={{ top: 200 }}
-              handleSize={8}
-              innerRef={brushRef}
-              resizeTriggerAreas={['left', 'right']}
-              brushDirection="horizontal"
-              onChange={onBrushChange}
-              onClick={() => setFilteredOrders(accessEvents)}
-              selectedBoxStyle={{
-                fill: `url(#${'brush_pattern'})`,
-                stroke: 'black'
-              }}
-              useWindowMoveEvents
-              renderBrushHandle={(props) => <BrushHandle {...props} />}
-            />
-          </Group>
-          {filteredOrders.map((order: Order, i) => {
-            return (
-              <Group top={(4 * height) / 7} key={`regular-dot-${i}`}>
-                <circle
-                  key={`${i}`}
-                  r={parseFloat(order.amount) * 5}
-                  cx={xScale(getDate(order))}
-                  cy={yScale(getY(order))}
+                  r={parseFloat(order.amount) * 8}
+                  cx={xFilteredViewScale(getDate(order))}
+                  cy={yFilteredViewScale(getY(order))}
                   stroke={
                     order.estimatedUSDValue === 'Denied' ? '#990000' : '#004516'
                   }
@@ -273,7 +217,7 @@ export default withTooltip<TimelineProps, Order>(
                   }
                   onMouseOver={() => {
                     const top = height - 110
-                    const left = xScale(getDate(order))
+                    const left = xFilteredViewScale(getDate(order))
                     showTooltip({
                       tooltipData: order,
                       tooltipLeft: left,
@@ -282,26 +226,218 @@ export default withTooltip<TimelineProps, Order>(
                   }}
                   onMouseLeave={() => hideTooltip()}
                 />
+                {/* {order.estimatedUSDValue === 'Denied' ? (
+                  <CrossIcon
+                    key={`${i}`}
+                    x={xBrushScale(getDate(order))}
+                    y={yBrushScale(getY(order))}
+                    stroke={'#990000'}
+                    fill={
+                      tooltipData === order
+                        ? order.estimatedUSDValue === 'Denied'
+                          ? 'pink'
+                          : order.estimatedUSDValue === 'Granted'
+                          ? 'lightgreen'
+                          : 'darkgreen'
+                        : order.estimatedUSDValue === 'Denied'
+                        ? '#e44c4c'
+                        : order.estimatedUSDValue === 'Granted'
+                        ? 'darkgreen'
+                        : 'darkgreen'
+                    }
+                    onMouseOver={() => {
+                      const top = height - 110
+                      const left = xFilteredViewScale(getDate(order))
+                      showTooltip({
+                        tooltipData: order,
+                        tooltipLeft: left,
+                        tooltipTop: top
+                      })
+                    }}
+                    onMouseLeave={() => hideTooltip()}
+                  />
+                ) : (
+                  <CheckmarkIcon
+                    key={`${i}`}
+                    x={xBrushScale(getDate(order))}
+                    y={yBrushScale(getY(order))}
+                    stroke={'#004516'}
+                    fill={
+                      tooltipData === order
+                        ? order.estimatedUSDValue === 'Denied'
+                          ? 'pink'
+                          : order.estimatedUSDValue === 'Granted'
+                          ? 'lightgreen'
+                          : 'darkgreen'
+                        : order.estimatedUSDValue === 'Denied'
+                        ? '#e44c4c'
+                        : order.estimatedUSDValue === 'Granted'
+                        ? 'darkgreen'
+                        : 'darkgreen'
+                    }
+                    background-color={'black'}
+                    className={styles.rejectCircle}
+                    onMouseOver={() => {
+                      const top = height - 110
+                      const left = xFilteredViewScale(getDate(order))
+                      showTooltip({
+                        tooltipData: order,
+                        tooltipLeft: left,
+                        tooltipTop: top
+                      })
+                    }}
+                    onMouseLeave={() => hideTooltip()}
+                  />
+                )} */}
+                <text
+                  x={
+                    order.estimatedUSDValue === 'Denied'
+                      ? xFilteredViewScale(getDate(order)) - 4
+                      : xFilteredViewScale(getDate(order)) - 6
+                  }
+                  y={
+                    order.estimatedUSDValue === 'Denied'
+                      ? yFilteredViewScale(getY(order)) + 4
+                      : yFilteredViewScale(getY(order)) + 5.5
+                  }
+                  enableBackground={
+                    tooltipData === order
+                      ? order.estimatedUSDValue === 'Denied'
+                        ? 'pink'
+                        : order.estimatedUSDValue === 'Granted'
+                        ? 'lightgreen'
+                        : 'darkgreen'
+                      : order.estimatedUSDValue === 'Denied'
+                      ? '#e44c4c'
+                      : order.estimatedUSDValue === 'Granted'
+                      ? 'darkgreen'
+                      : 'darkgreen'
+                  }
+                  onMouseOver={() => {
+                    const top = height - 110
+                    const left = xFilteredViewScale(getDate(order))
+                    showTooltip({
+                      tooltipData: order,
+                      tooltipLeft: left,
+                      tooltipTop: top
+                    })
+                  }}
+                  onMouseLeave={() => hideTooltip()}
+                >
+                  {order.estimatedUSDValue === 'Denied' ? 'x' : '✓'}
+                </text>
               </Group>
             )
           })}
           <AxisBottom
             left={0}
-            top={(4 * height) / 7 + 30}
-            scale={xScale}
+            top={height / 4 + 30}
+            scale={xFilteredViewScale}
+            numTicks={5}
+            stroke="#990000"
+            tickStroke="#990000"
+            tickLabelProps={() => axisBottomTickLabelProps}
+          />
+          {initialOrders.map((order: Order, i) => {
+            return (
+              <Group top={(4 * height) / 6 + 10} key={`regular-dot-${i}`}>
+                <circle
+                  key={`${i}`}
+                  r={parseFloat(order.amount) * 8}
+                  cx={xBrushScale(getDate(order))}
+                  cy={yBrushScale(getY(order))}
+                  stroke={
+                    order.estimatedUSDValue === 'Denied' ? '#990000' : '#004516'
+                  }
+                  fill={
+                    order.estimatedUSDValue === 'Denied'
+                      ? '#e44c4c'
+                      : 'darkgreen'
+                  }
+                />
+                {/* {order.estimatedUSDValue === 'Denied' ? (
+                  <CrossIcon
+                    key={`${i}`}
+                    x={xBrushScale(getDate(order))}
+                    y={yBrushScale(getY(order))}
+                    stroke={'#990000'}
+                    fill={'#e44c4c'}
+                  />
+                ) : (
+                  <CheckmarkIcon
+                    key={`${i}`}
+                    x={xBrushScale(getDate(order))}
+                    y={yBrushScale(getY(order))}
+                    stroke={'#004516'}
+                    fill={'darkgreen'}
+                    background-color={'black'}
+                    className={styles.rejectCircle}
+                  />
+                )} */}
+                <text
+                  x={
+                    order.estimatedUSDValue === 'Denied'
+                      ? xBrushScale(getDate(order)) - 4
+                      : xBrushScale(getDate(order)) - 6
+                  }
+                  y={
+                    order.estimatedUSDValue === 'Denied'
+                      ? yBrushScale(getY(order)) + 4
+                      : yBrushScale(getY(order)) + 5.5
+                  }
+                >
+                  {order.estimatedUSDValue === 'Denied' ? 'x' : '✓'}
+                </text>
+              </Group>
+            )
+          })}
+          <AxisBottom
+            left={0}
+            top={(4 * height) / 6 + 35}
+            scale={xBrushScale}
             numTicks={5}
             stroke="#990000"
             strokeWidth={1}
             tickStroke="#990000"
             tickLabelProps={() => axisBottomTickLabelProps}
           />
+          <Group top={70}>
+            <PatternLines
+              id={'brush_pattern'}
+              height={(4 * height) / 6 + 10}
+              width={width}
+              stroke={'f6acc8'}
+              strokeWidth={1}
+              orientation={['diagonal']}
+            />
+            <g transform={`translate(${0}, ${(4 * height) / 6 - height / 4})`}>
+              <Brush
+                xScale={xBrushScale}
+                yScale={yBrushScale}
+                width={width}
+                height={height / 4}
+                handleSize={8}
+                innerRef={brushRef}
+                resizeTriggerAreas={['left', 'right']}
+                brushDirection="horizontal"
+                onChange={onBrushChange}
+                onClick={() => setFilteredOrders(accessEvents)}
+                selectedBoxStyle={{
+                  fill: `url(#${'brush_pattern'})`,
+                  stroke: 'black'
+                }}
+                useWindowMoveEvents
+                renderBrushHandle={(props) => <BrushHandle {...props} />}
+              />
+            </g>
+          </Group>
         </svg>
         {tooltipData && (
           <div>
             <TooltipWithBounds
               key={Math.random()}
-              top={tooltipTop - 12}
-              left={tooltipLeft + 12}
+              top={25}
+              left={tooltipLeft - 10}
               style={tooltipStyles}
               onMouseOver={() => {
                 showTooltip({
@@ -317,6 +453,17 @@ export default withTooltip<TimelineProps, Order>(
               <div>
                 <strong>Date: </strong>
                 {new Date(tooltipData.createdTimestamp * 1000).toDateString()}
+              </div>
+              <div>
+                <strong>Type: </strong>
+                <strong
+                  style={{
+                    color:
+                      tooltipData.estimatedUSDValue === 'Denied'
+                        ? 'red'
+                        : 'green'
+                  }}
+                >{`${tooltipData.estimatedUSDValue}`}</strong>
               </div>
             </TooltipWithBounds>
             <Tooltip
