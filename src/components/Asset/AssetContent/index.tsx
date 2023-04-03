@@ -49,7 +49,8 @@ export default function AssetContent({
         </div>
 
         <div className={styles.transactionHistory}>
-          <h3>Transaction History Visualization</h3>
+          <h3>Medical Record Access History</h3>
+
           <TransactionHistoryVisualization
             width={1125}
             height={400}
