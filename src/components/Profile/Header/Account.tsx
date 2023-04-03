@@ -9,19 +9,30 @@ import styles from './Account.module.css'
 import { useProfile } from '@context/Profile'
 import { accountTruncate } from '@utils/web3'
 import accountAttributes from 'content/static_data/account-attributes-health.json'
+import doctorData from 'content/static_data/doctor-dict.json'
 
 function getRole(accountAddress: string): string | undefined {
   const account = accountAttributes.accountAddresses.find(
     (address) => address.accountAddress === accountAddress
   )
-  return account?.abacAttributes?.subjectAttributes?.role
+  const doctorAccount = doctorData.find(
+    (doctor) => doctor.wallet_address === accountAddress
+  )
+  return doctorAccount
+    ? 'Doctor'
+    : account?.abacAttributes?.subjectAttributes?.role
 }
 
 function getName(accountAddress: string): string | undefined {
   const account = accountAttributes.accountAddresses.find(
     (address) => address.accountAddress === accountAddress
   )
-  return account?.abacAttributes?.subjectAttributes?.name
+  const doctorAccount = doctorData.find(
+    (doctor) => doctor.wallet_address === accountAddress
+  )
+  return doctorAccount
+    ? `${doctorAccount.first_name} ${doctorAccount.last_name}`
+    : account?.abacAttributes?.subjectAttributes?.name
 }
 
 export default function Account({
