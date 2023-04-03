@@ -129,16 +129,32 @@ export default function AssetActions({
 
   // Compute is the top half -- will become "Grant Access" with search bar
   // Consume is the bottom half -- will become list of people with access + revoke options
-  const UseContent = (
-    <>
-      {isCompute ? (
-        <Compute
-          asset={asset}
-          dtBalance={dtBalance}
-          file={fileMetadata}
-          fileIsLoading={fileIsLoading}
-        />
-      ) : (
+  // const UseContent = (
+  //   <>
+  //     {isCompute ? (
+  //       <Compute
+  //         asset={asset}
+  //         dtBalance={dtBalance}
+  //         file={fileMetadata}
+  //         fileIsLoading={fileIsLoading}
+  //       />
+  //     ) : (
+  //       <Consume
+  //         asset={asset}
+  //         dtBalance={dtBalance}
+  //         isBalanceSufficient={isBalanceSufficient}
+  //         file={fileMetadata}
+  //         fileIsLoading={fileIsLoading}
+  //       />
+  //     )}
+  //     <AssetStats />
+  //   </>
+  // )
+
+  const assetActionTabs: TabsItems[] = [
+    {
+      title: 'Download',
+      content: (
         <Consume
           asset={asset}
           dtBalance={dtBalance}
@@ -146,15 +162,15 @@ export default function AssetActions({
           file={fileMetadata}
           fileIsLoading={fileIsLoading}
         />
-      )}
-      <AssetStats />
-    </>
-  )
+      )
+    },
+    {
+      title: 'Asset Access',
+      content: <AssetAccess></AssetAccess>
+    }
+  ]
 
-  const sample = <AssetAccess></AssetAccess>
-
-  // const tabs: TabsItem[] = [{ title: 'Grant Access', content: UseContent }]
-  const tabs: TabsItem[] = [{ title: 'Asset Access', content: sample }]
+  const tabs: TabsItem[] = assetActionTabs
 
   return (
     <>
