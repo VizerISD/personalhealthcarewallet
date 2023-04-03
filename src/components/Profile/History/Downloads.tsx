@@ -2,7 +2,6 @@ import React, { ReactElement } from 'react'
 import Table, { TableOceanColumn } from '@shared/atoms/Table'
 import Time from '@shared/atoms/Time'
 import AssetTitle from '@shared/AssetList/AssetListTitle'
-import NetworkName from '@shared/NetworkName'
 import { useProfile } from '@context/Profile'
 import { useUserPreferences } from '@context/UserPreferences'
 
@@ -12,16 +11,12 @@ const columns: TableOceanColumn<DownloadedAsset>[] = [
     selector: (row) => <AssetTitle asset={row.asset} />
   },
   {
-    name: 'Network',
-    selector: (row) => <NetworkName networkId={row.networkId} />
-  },
-  {
-    name: 'Datatoken',
-    selector: (row) => row.dtSymbol
-  },
-  {
     name: 'Time',
     selector: (row) => <Time date={row.timestamp.toString()} relative isUnix />
+  },
+  {
+    name: 'Most Recently Accessed By...',
+    selector: () => <text>Dr. Zacherie Sirett</text>
   }
 ]
 

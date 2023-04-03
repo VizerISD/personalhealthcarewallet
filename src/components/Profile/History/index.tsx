@@ -2,7 +2,6 @@ import React, { ReactElement, useCallback, useEffect, useState } from 'react'
 import Tabs from '@shared/atoms/Tabs'
 import PublishedList from './PublishedList'
 import Downloads from './Downloads'
-import ComputeJobs from './ComputeJobs'
 import styles from './index.module.css'
 import { useWeb3 } from '@context/Web3'
 import { chainIds } from 'app.config'
@@ -27,26 +26,16 @@ function getTabs(
 ): HistoryTab[] {
   const defaultTabs: HistoryTab[] = [
     {
-      title: 'Published',
+      title: 'My Medical Records',
       content: <PublishedList accountId={accountId} />
-    },
-    {
-      title: 'Downloads',
-      content: <Downloads accountId={accountId} />
     }
   ]
-  const computeTab: HistoryTab = {
-    title: 'Compute Jobs',
-    content: (
-      <ComputeJobs
-        jobs={jobs}
-        isLoading={isLoadingJobs}
-        refetchJobs={() => setRefetchJobs(!refetchJobs)}
-      />
-    )
+  const downloadedTab: HistoryTab = {
+    title: 'Recently Downloaded',
+    content: <Downloads accountId={accountId} />
   }
-  if (accountId === userAccountId) {
-    defaultTabs.push(computeTab)
+  if (accountId !== userAccountId) {
+    defaultTabs.push(downloadedTab)
   }
   return defaultTabs
 }
