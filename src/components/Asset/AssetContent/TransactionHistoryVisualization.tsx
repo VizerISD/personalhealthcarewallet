@@ -19,7 +19,7 @@ import { PatternLines } from '@visx/pattern'
 import { Brush } from '@visx/brush'
 import mockedAccessEvents from 'content/static_data/mocked-access-events.json'
 // import CrossIcon from '@images/cross.svg'
-// import CheckmarkIcon from '@images/checkmark2.svg'
+// import CheckmarkIcon from '@images/checkmark.svg'
 
 const deniedEvents: Order[] = mockedAccessEvents.data.accessDenieds.map(
   (obj) => ({
