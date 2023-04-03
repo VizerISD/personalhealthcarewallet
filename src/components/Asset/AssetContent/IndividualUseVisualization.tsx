@@ -8,6 +8,7 @@ import { AxisBottom, AxisLeft } from '@visx/axis'
 import { accountTruncate } from '@utils/web3'
 import Link from 'next/link'
 import mockedAccessEvents from 'content/static_data/mocked-access-events.json'
+import styles from './IndividualUseVisualization.module.css'
 
 const deniedEvents: Order[] = mockedAccessEvents.data.accessDenieds.map(
   (obj) => ({
@@ -30,8 +31,13 @@ const accessEvents: Order[] = [...deniedEvents, ...grantedEvents]
 const verticalMargin = 120
 const maxBarAmount = 10
 
+type AccountIdentifiers = {
+  walletAddress: string
+  accessCount: number
+}
+
 function payerIDMap(txs: Order[]) {
-  const ids = new Map<string, number>()
+  const ids = new Map<string, AccountIdentifiers>()
   const orders = txs
   for (let i = 0; i < orders?.length; i++) {
     const idname = orders[i].payer?.name
@@ -39,12 +45,18 @@ function payerIDMap(txs: Order[]) {
       : orders[i].payer?.id
 
     if (ids.has(idname)) {
-      ids.set(idname, ids.get(idname) + 1)
+      ids.get(idname).accessCount++
     } else {
-      ids.set(idname, 1)
+      const accountIdentifier = {
+        walletAddress: orders[i].payer?.id,
+        accessCount: 1
+      }
+      ids.set(idname, accountIdentifier)
     }
   }
-  return new Map<string, number>([...ids.entries()].sort((a, b) => b[1] - a[1]))
+  return new Map<string, AccountIdentifiers>(
+    [...ids.entries()].sort((a, b) => b[1].accessCount - a[1].accessCount)
+  )
 }
 
 export type BarsProps = {
@@ -92,7 +104,12 @@ export default function IndividualUseVisualization({
     padding: 0.4
   })
   const yScale = scaleLinear({
-    domain: [0, Math.max(...ids.values())], // y-coordinate data values
+    // domain: [0, Math.max(...ids.values())], // y-coordinate data values
+    domain: [
+      0,
+      Math.max(...Array.from(ids.values(), ({ accessCount }) => accessCount))
+    ], // y-coordinate data values
+
     // svg y-coordinates, increase from top to bottom. We reverse the order
     // so that minY in data space maps to graphHeight in svg y-coordinate space
     range: [yMax, 0],
@@ -115,7 +132,7 @@ export default function IndividualUseVisualization({
           {[...ids.keys()].slice(0, maxBarAmount).map((d) => {
             const idname = d
             const barWidth = xScale.bandwidth()
-            const barHeight = yMax - (yScale(ids.get(idname)) ?? 0)
+            const barHeight = yMax - (yScale(ids.get(idname).accessCount) ?? 0)
             const barX = xScale(idname)
             const barY = yMax - barHeight
             return (
@@ -141,7 +158,7 @@ export default function IndividualUseVisualization({
                   dy={'-.33em'}
                   style={{ fontFamily: 'arial' }}
                 >
-                  {`${ids.get(idname)}`}
+                  {`${ids.get(idname).accessCount}`}
                 </text>
               </Group>
             )
@@ -161,7 +178,11 @@ export default function IndividualUseVisualization({
             scale={xScale}
             tickComponent={(tickRendererProps) => {
               return (
-                <Link href={`/profile/${tickRendererProps.formattedValue}`}>
+                <Link
+                  href={`/profile/${
+                    ids.get(tickRendererProps.formattedValue).walletAddress
+                  }`}
+                >
                   <a title="Show profile page.">
                     <text
                       x={tickRendererProps.x}
@@ -170,6 +191,7 @@ export default function IndividualUseVisualization({
                       fontSize={12}
                       fontWeight={'bold'}
                       fill={'black'}
+                      className={styles.test}
                     >
                       {`Dr. ${tickRendererProps.formattedValue}`}
                     </text>
