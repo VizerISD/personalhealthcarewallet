@@ -56,7 +56,7 @@ export default function Stats({
   return (
     <div className={styles.stats}>
       <NumberUnit label="Number of Medical Records" value="0" />
-      <NumberUnit label="Number of People with Access" value="0" />
+      <NumberUnit label="Number of People with Access" value="1" />
     </div>
   )
 }
