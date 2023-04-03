@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import Home from '../components/Home'
+import PageProfile from './profile'
 import Page from '@shared/Page'
 import { useRouter } from 'next/router'
 import { useMarketMetadata } from '@context/MarketMetadata'
@@ -15,7 +15,7 @@ export default function PageHome(): ReactElement {
       uri={router.route}
       headerCenter
     >
-      <Home />
+      <PageProfile />
     </Page>
   )
 }
