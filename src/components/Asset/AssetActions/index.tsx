@@ -127,31 +127,7 @@ export default function AssetActions({
     }
   }, [balance, accountId, asset?.accessDetails, dtBalance])
 
-  // Compute is the top half -- will become "Grant Access" with search bar
-  // Consume is the bottom half -- will become list of people with access + revoke options
-  // const UseContent = (
-  //   <>
-  //     {isCompute ? (
-  //       <Compute
-  //         asset={asset}
-  //         dtBalance={dtBalance}
-  //         file={fileMetadata}
-  //         fileIsLoading={fileIsLoading}
-  //       />
-  //     ) : (
-  //       <Consume
-  //         asset={asset}
-  //         dtBalance={dtBalance}
-  //         isBalanceSufficient={isBalanceSufficient}
-  //         file={fileMetadata}
-  //         fileIsLoading={fileIsLoading}
-  //       />
-  //     )}
-  //     <AssetStats />
-  //   </>
-  // )
-
-  const assetActionTabs: TabsItems[] = [
+  const assetActionTabs: TabsItem[] = [
     {
       title: 'Download',
       content: (
