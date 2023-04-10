@@ -20,7 +20,7 @@ export default function PageProfile(): ReactElement {
       if (!router?.asPath) return
 
       // Path is root /profile, have web3 take over
-      if (router.asPath === '/profile') {
+      if (router.asPath === '/profile' || router.asPath === '/') {
         setFinalAccountEns(accountEns)
         setFinalAccountId(accountId)
         setOwnAccount(true)
