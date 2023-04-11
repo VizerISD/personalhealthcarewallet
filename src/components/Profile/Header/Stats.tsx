@@ -11,6 +11,8 @@ import PriceUnit from '@shared/Price/PriceUnit'
 import Button from '@shared/atoms/Button'
 import { useWeb3 } from '@context/Web3'
 
+const mockedMedicalRecords = require('content/static_data/mocked-medical-records.json')
+
 export default function Stats({
   accountId
 }: {
@@ -55,7 +57,10 @@ export default function Stats({
 
   return (
     <div className={styles.stats}>
-      <NumberUnit label="Number of Medical Records" value="0" />
+      <NumberUnit
+        label="Number of Medical Records"
+        value={mockedMedicalRecords.MedicalRecords.length}
+      />
       <NumberUnit label="Number of People with Access" value="1" />
     </div>
   )

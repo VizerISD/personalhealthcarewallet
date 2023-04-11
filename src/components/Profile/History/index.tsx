@@ -9,6 +9,7 @@ import { getComputeJobs } from '@utils/compute'
 import { useUserPreferences } from '@context/UserPreferences'
 import { useCancelToken } from '@hooks/useCancelToken'
 import { LoggerInstance } from '@oceanprotocol/lib'
+import MedicalRecordsTab from './MedicalRecordsTab'
 
 interface HistoryTab {
   title: string
@@ -27,7 +28,7 @@ function getTabs(
   const defaultTabs: HistoryTab[] = [
     {
       title: 'My Medical Records',
-      content: <PublishedList accountId={accountId} />
+      content: <MedicalRecordsTab />
     }
   ]
   const downloadedTab: HistoryTab = {
