@@ -1,15 +1,33 @@
 import React, { ReactElement } from 'react'
+import Link from 'next/link'
 import Table, { TableOceanColumn } from '@shared/atoms/Table'
+import styles from '@shared/AssetList/AssetListTitle.module.css'
+
 import Time from '@shared/atoms/Time'
 
 // Importing the mocked medical records data from the JSON file
-const mockedMedicalRecords = require('content/static_data/mocked-medical-records.json')
+import mockedMedicalRecords from 'content/static_data/mocked-medical-records.json'
+
+// MedicalRecord interface from the mocked medical records data
+export interface MedicalRecord {
+  title: string
+  date: string
+  did: string
+  most_recently_accessed_by: string
+  accessor_id: string
+}
 
 // Defining the table columns using the TableOceanColumn type
 const columns: TableOceanColumn<MedicalRecord>[] = [
   {
     name: 'Medical Record Name',
-    selector: (row) => <span>{row.name}</span>
+    selector: (row) => (
+      <h3 className={styles.title}>
+        <Link href={`/asset/${row.did}`}>
+          <a>{row.title}</a>
+        </Link>
+      </h3>
+    )
   },
   {
     name: 'Date',
