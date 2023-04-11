@@ -1,32 +1,37 @@
 {
   "MedicalRecords": [
     {
-      "name": "Blood Work",
-      "date": "03/10/2022",
-      "most_recently_accessed_by": "Dr. Zacherie Sirett",
-      "accessor_id": "0x471c4fa9fe280c4bb5ec789c7438b06645a3a6c3"
-    },
-    {
-      "name": "Blood Work",
-      "date": "03/14/2023",
-      "most_recently_accessed_by": "Dr. Zacherie Sirett",
-      "accessor_id": "0x471c4fa9fe280c4bb5ec789c7438b06645a3a6c3"
-    },
-    {
-      "name": "Covid Test",
-      "date": "04/14/2023",
-      "most_recently_accessed_by": "Dr. Zacherie Sirett",
-      "accessor_id": "0x471c4fa9fe280c4bb5ec789c7438b06645a3a6c3"
-    },
-    {
-      "name": "Annual Checkup Results",
+      "title": "Annual Checkup Results",
       "date": "04/10/2023",
+      "did": "did:op:398642b1903e3f0aa0bd735b527ed988f1fe371ddbbc91d2ff9c5709536f3d3f",
       "most_recently_accessed_by": "Dr. Zacherie Sirett",
       "accessor_id": "0x471c4fa9fe280c4bb5ec789c7438b06645a3a6c3"
     },
     {
-      "name": "Insurance Form",
+      "title": "Blood Work",
+      "date": "03/14/2023",
+      "did": "did:op:6d2a29be0799ee02a10bc602a411f566636eebb37d88efe6959a8e193d6024d1",
+      "most_recently_accessed_by": "Dr. Zacherie Sirett",
+      "accessor_id": "0x471c4fa9fe280c4bb5ec789c7438b06645a3a6c3"
+    },
+    {
+      "title": "Blood Work",
+      "date": "03/10/2022",
+      "did": "did:op:0e61b4e19aad877100eb433d7bd617f68af6ed8499ffc4699126349f7b8d5be7",
+      "most_recently_accessed_by": "Dr. Zacherie Sirett",
+      "accessor_id": "0x471c4fa9fe280c4bb5ec789c7438b06645a3a6c3"
+    },
+    {
+      "title": "Covid Test",
+      "date": "02/14/2021",
+      "did": "did:op:9f110840acbda04d1676bafcaef4169b19326acd43f7e6a439b4e0e7b2466877",
+      "most_recently_accessed_by": "Dr. Zacherie Sirett",
+      "accessor_id": "0x471c4fa9fe280c4bb5ec789c7438b06645a3a6c3"
+    },
+    {
+      "title": "Insurance Form",
       "date": "01/20/2016",
+      "did": "did:op:1524136237f2aec733fc6f987ee24f3e332e0c8e032f1210aa20ab47931c7488",
       "most_recently_accessed_by": "Dr. Zacherie Sirett",
       "accessor_id": "0x471c4fa9fe280c4bb5ec789c7438b06645a3a6c3"
     }
