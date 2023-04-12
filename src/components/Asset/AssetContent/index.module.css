@@ -21,6 +21,14 @@
   position: relative;
 }
 
+.visualizationHeader {
+  display: flex;
+  align-items: baseline;
+  align-content: bottom;
+  height: 40px;
+  margin-top: 10px;
+}
+
 @media (min-width: 60rem) {
   .grid {
     grid-template-rows: 500 500 1fr;

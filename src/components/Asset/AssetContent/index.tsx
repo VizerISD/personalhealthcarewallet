@@ -17,6 +17,7 @@ import Web3 from 'web3'
 import Button from '@shared/atoms/Button'
 import IndividualUseVisualization from './IndividualUseVisualization'
 import TransactionHistoryVisualization from './TransactionHistoryVisualization'
+import Tooltip from '@shared/atoms/Tooltip'
 
 export default function AssetContent({
   asset
@@ -38,19 +39,36 @@ export default function AssetContent({
 
   return (
     <>
-      <div className={styles.networkWrap}>
-        <NetworkName networkId={asset?.chainId} className={styles.network} />
-      </div>
-
       <article className={styles.grid}>
         <div className={styles.individualUse}>
-          <h3>Most Frequent Accessors</h3>
+          <div className={styles.visualizationHeader}>
+            <h3>Most Frequent Accessors</h3>
+            <Tooltip
+              content={
+                <Markdown
+                  text={
+                    "Click on the name below each bar to visit the accessor's profile page."
+                  }
+                />
+              }
+            />
+          </div>
           <IndividualUseVisualization width={1125} height={400} events={true} />
         </div>
 
         <div className={styles.transactionHistory}>
-          <h3>Medical Record Access History</h3>
-
+          <div className={styles.visualizationHeader}>
+            <h3>Medical Record Access History</h3>
+            <Tooltip
+              content={
+                <Markdown
+                  text={
+                    'Hover over a circle in the top timeline to view details about the access event. Drag the cursor over the bottom timeline to resize.'
+                  }
+                />
+              }
+            />
+          </div>
           <TransactionHistoryVisualization
             width={1125}
             height={400}
