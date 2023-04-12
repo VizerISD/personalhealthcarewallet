@@ -63,7 +63,7 @@ export default function AssetContent({
               content={
                 <Markdown
                   text={
-                    'Hover over a circle in the top timeline to details about the access event. Drag the cursor over the bottom timeline to resize.'
+                    'Hover over a circle in the top timeline to view details about the access event. Drag the cursor over the bottom timeline to resize.'
                   }
                 />
               }
