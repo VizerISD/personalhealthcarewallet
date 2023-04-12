@@ -18,9 +18,8 @@ import { BrushHandleRenderProps } from '@visx/brush/lib/BrushHandle'
 import { PatternLines } from '@visx/pattern'
 import { Brush } from '@visx/brush'
 import mockedAccessEvents from 'content/static_data/mocked-access-events.json'
-// import CrossIcon from '@images/cross.svg'
-// import CheckmarkIcon from '@images/checkmark.svg'
 
+// Filter the denied events from the mocked access event data
 const deniedEvents: Order[] = mockedAccessEvents.data.accessDenieds.map(
   (obj) => ({
     ...obj,
@@ -29,6 +28,7 @@ const deniedEvents: Order[] = mockedAccessEvents.data.accessDenieds.map(
   })
 )
 
+// Filter the granted events from the mocked access event data
 const grantedEvents: Order[] = mockedAccessEvents.data.accessGranteds.map(
   (obj) => ({
     ...obj,
@@ -37,9 +37,10 @@ const grantedEvents: Order[] = mockedAccessEvents.data.accessGranteds.map(
   })
 )
 
+// Combine the denied and granted events into one array
 const accessEvents: Order[] = [...deniedEvents, ...grantedEvents]
 
-// tooltip
+// Tooltip style for hoverable nodes
 const tooltipStyles = {
   ...defaultStyles,
   background: 'white',
@@ -47,6 +48,7 @@ const tooltipStyles = {
   color: 'black'
 }
 
+// Bottom date axis properties
 const axisBottomTickLabelProps = {
   dx: '1.5em',
   dy: '0.25em',
@@ -56,6 +58,7 @@ const axisBottomTickLabelProps = {
   fill: '#000000'
 }
 
+// Timeline properties for tx history viz
 export type TimelineProps = {
   width: number
   height: number
@@ -98,6 +101,7 @@ export default withTooltip<TimelineProps, Order>(
     const getDate = (d: Order) => new Date(d?.createdTimestamp * 1000)
     const getY = (d: Order) => parseFloat(d?.amount)
 
+    // brush resize options
     const onBrushChange = (domain: Bounds | null) => {
       if (!domain) return
       const { x0, x1 } = domain
@@ -113,7 +117,7 @@ export default withTooltip<TimelineProps, Order>(
       setFilteredOrders(accessEventsCopy)
     }
 
-    // scales
+    // Filtered view scales
     const xFilteredViewScale = useMemo(
       () =>
         scaleTime<number>({
@@ -130,6 +134,8 @@ export default withTooltip<TimelineProps, Order>(
         }),
       [yMax]
     )
+
+    // Brush selection scales
     const xBrushScale = useMemo(
       () =>
         scaleTime<number>({
@@ -146,14 +152,6 @@ export default withTooltip<TimelineProps, Order>(
         }),
       [yMax]
     )
-
-    // event handlers
-    const handleClearClick = () => {
-      if (brushRef?.current) {
-        setFilteredOrders(accessEvents)
-        brushRef.current.reset()
-      }
-    }
 
     // We need to manually offset the handles for them to be rendered at the right position
     const BrushHandle = ({
@@ -226,69 +224,6 @@ export default withTooltip<TimelineProps, Order>(
                   }}
                   onMouseLeave={() => hideTooltip()}
                 />
-                {/* {order.estimatedUSDValue === 'Denied' ? (
-                  <CrossIcon
-                    key={`${i}`}
-                    x={xBrushScale(getDate(order))}
-                    y={yBrushScale(getY(order))}
-                    stroke={'#990000'}
-                    fill={
-                      tooltipData === order
-                        ? order.estimatedUSDValue === 'Denied'
-                          ? 'pink'
-                          : order.estimatedUSDValue === 'Granted'
-                          ? 'lightgreen'
-                          : 'darkgreen'
-                        : order.estimatedUSDValue === 'Denied'
-                        ? '#e44c4c'
-                        : order.estimatedUSDValue === 'Granted'
-                        ? 'darkgreen'
-                        : 'darkgreen'
-                    }
-                    onMouseOver={() => {
-                      const top = height - 110
-                      const left = xFilteredViewScale(getDate(order))
-                      showTooltip({
-                        tooltipData: order,
-                        tooltipLeft: left,
-                        tooltipTop: top
-                      })
-                    }}
-                    onMouseLeave={() => hideTooltip()}
-                  />
-                ) : (
-                  <CheckmarkIcon
-                    key={`${i}`}
-                    x={xBrushScale(getDate(order))}
-                    y={yBrushScale(getY(order))}
-                    stroke={'#004516'}
-                    fill={
-                      tooltipData === order
-                        ? order.estimatedUSDValue === 'Denied'
-                          ? 'pink'
-                          : order.estimatedUSDValue === 'Granted'
-                          ? 'lightgreen'
-                          : 'darkgreen'
-                        : order.estimatedUSDValue === 'Denied'
-                        ? '#e44c4c'
-                        : order.estimatedUSDValue === 'Granted'
-                        ? 'darkgreen'
-                        : 'darkgreen'
-                    }
-                    background-color={'black'}
-                    className={styles.rejectCircle}
-                    onMouseOver={() => {
-                      const top = height - 110
-                      const left = xFilteredViewScale(getDate(order))
-                      showTooltip({
-                        tooltipData: order,
-                        tooltipLeft: left,
-                        tooltipTop: top
-                      })
-                    }}
-                    onMouseLeave={() => hideTooltip()}
-                  />
-                )} */}
                 <text
                   x={
                     order.estimatedUSDValue === 'Denied'
@@ -355,25 +290,6 @@ export default withTooltip<TimelineProps, Order>(
                       : 'darkgreen'
                   }
                 />
-                {/* {order.estimatedUSDValue === 'Denied' ? (
-                  <CrossIcon
-                    key={`${i}`}
-                    x={xBrushScale(getDate(order))}
-                    y={yBrushScale(getY(order))}
-                    stroke={'#990000'}
-                    fill={'#e44c4c'}
-                  />
-                ) : (
-                  <CheckmarkIcon
-                    key={`${i}`}
-                    x={xBrushScale(getDate(order))}
-                    y={yBrushScale(getY(order))}
-                    stroke={'#004516'}
-                    fill={'darkgreen'}
-                    background-color={'black'}
-                    className={styles.rejectCircle}
-                  />
-                )} */}
                 <text
                   x={
                     order.estimatedUSDValue === 'Denied'
@@ -452,7 +368,7 @@ export default withTooltip<TimelineProps, Order>(
               </div>
               <div>
                 <strong>Date: </strong>
-                {new Date(tooltipData.createdTimestamp * 1000).toDateString()}
+                {new Date(tooltipData.createdTimestamp * 1000).toLocaleString()}
               </div>
               <div>
                 <strong>Type: </strong>
