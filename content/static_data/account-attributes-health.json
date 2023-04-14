@@ -35,6 +35,15 @@
           "role": "Surgeon General"
         }
       }
+    },
+    {
+      "accountAddress": "0xE1d1435a771E4201d926546a14eD63C254c7A257",
+      "abacAttributes": {
+        "subjectAttributes": {
+          "name": "Ashna Tipirneni",
+          "role": "Patient"
+        }
+      }
     }
   ]
 }
