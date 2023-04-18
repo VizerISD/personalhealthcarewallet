@@ -7,26 +7,33 @@ import { useAsset } from '@context/Asset'
 import { AxisBottom, AxisLeft } from '@visx/axis'
 import { accountTruncate } from '@utils/web3'
 import Link from 'next/link'
+import bloodwork2AccessEvents from 'content/static_data/mocked-bloodwork2/access-events.json'
 import mockedAccessEvents from 'content/static_data/mocked-access-events.json'
+import mockedRecords from 'content/static_data/mocked-medical-records.json'
 import styles from './IndividualUseVisualization.module.css'
 
-const deniedEvents: Order[] = mockedAccessEvents.data.accessDenieds.map(
-  (obj) => ({
-    ...obj,
-    createdTimestamp: Number(obj.createdTimestamp),
-    amount: '1'
-  })
-)
+function getDeniedEvents(accessLog: { data: any }) {
+  //const deniedEvents: Order[] = mockedAccessEvents.data.accessDenieds.map(
+  const deniedEvents: Order[] = accessLog.data.accessDenieds.map(
+    (obj: { createdTimestamp: any }) => ({
+      ...obj,
+      createdTimestamp: Number(obj.createdTimestamp),
+      amount: '1'
+    })
+  )
+  return deniedEvents
+}
 
-const grantedEvents: Order[] = mockedAccessEvents.data.accessGranteds.map(
-  (obj) => ({
-    ...obj,
-    createdTimestamp: Number(obj.createdTimestamp),
-    amount: '1'
-  })
-)
-
-const accessEvents: Order[] = [...deniedEvents, ...grantedEvents]
+function getGrantedEvents(accessLog: { data: any }) {
+  const grantedEvents: Order[] = accessLog.data.accessGranteds.map(
+    (obj: { createdTimestamp: any }) => ({
+      ...obj,
+      createdTimestamp: Number(obj.createdTimestamp),
+      amount: '1'
+    })
+  )
+  return grantedEvents
+}
 
 const verticalMargin = 120
 const maxBarAmount = 10
@@ -87,8 +94,23 @@ export default function IndividualUseVisualization({
   height,
   events = false
 }: BarsProps) {
-  // const { asset } = useAsset()
-  // const txs: TransactionHistory = asset.transactionHistory
+  const { asset } = useAsset()
+
+  if (asset.id == mockedRecords.MedicalRecords[2].did) {
+    var accessLog = bloodwork2AccessEvents
+  } else {
+    console.log('\nno match for did\n')
+    var accessLog = mockedAccessEvents
+  }
+
+  const deniedEvents = getDeniedEvents(accessLog)
+  const grantedEvents = getGrantedEvents(accessLog)
+
+  const accessEvents: Order[] = [...deniedEvents, ...grantedEvents]
+
+  // const txs: TransactionHistory = asset.transactionHistoryconst { asset } = useAsset()
+  console.log('TEST TEST TEST TEST\nTESTTEST\n\n')
+  console.log(accessEvents)
 
   // Parse the wallet addresses and store in a dictionary
   const ids = payerIDMap(accessEvents)
