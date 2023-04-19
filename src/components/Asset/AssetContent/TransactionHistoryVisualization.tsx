@@ -18,27 +18,33 @@ import { BrushHandleRenderProps } from '@visx/brush/lib/BrushHandle'
 import { PatternLines } from '@visx/pattern'
 import { Brush } from '@visx/brush'
 import mockedAccessEvents from 'content/static_data/mocked-access-events.json'
+import bloodwork2AccessEvents from 'content/static_data/mocked-bloodwork2/access-events.json'
+import covidAccessEvents from 'content/static_data/mocked-covidtest/access-events.json'
+import mockedRecords from 'content/static_data/mocked-medical-records.json'
 
 // Filter the denied events from the mocked access event data
-const deniedEvents: Order[] = mockedAccessEvents.data.accessDenieds.map(
-  (obj) => ({
-    ...obj,
-    createdTimestamp: Number(obj.createdTimestamp),
-    amount: '1'
-  })
-)
+function getDeniedEvents(accessLog: { data: any }) {
+  const deniedEvents: Order[] = accessLog.data.accessDenieds.map(
+    (obj: { createdTimestamp: any }) => ({
+      ...obj,
+      createdTimestamp: Number(obj.createdTimestamp),
+      amount: '1'
+    })
+  )
+  return deniedEvents
+}
 
 // Filter the granted events from the mocked access event data
-const grantedEvents: Order[] = mockedAccessEvents.data.accessGranteds.map(
-  (obj) => ({
-    ...obj,
-    createdTimestamp: Number(obj.createdTimestamp),
-    amount: '1'
-  })
-)
-
-// Combine the denied and granted events into one array
-const accessEvents: Order[] = [...deniedEvents, ...grantedEvents]
+function getGrantedEvents(accessLog: { data: any }) {
+  const grantedEvents: Order[] = accessLog.data.accessGranteds.map(
+    (obj: { createdTimestamp: any }) => ({
+      ...obj,
+      createdTimestamp: Number(obj.createdTimestamp),
+      amount: '1'
+    })
+  )
+  return grantedEvents
+}
 
 // Tooltip style for hoverable nodes
 const tooltipStyles = {
@@ -77,8 +83,24 @@ export default withTooltip<TimelineProps, Order>(
     tooltipLeft = 0
   }: TimelineProps & WithTooltipProvidedProps<Order>) => {
     const brushRef = useRef<BaseBrush | null>(null)
-    // const { asset } = useAsset()
+    const { asset } = useAsset()
     // const { orders } = asset
+
+    // Based on the asset look at, set the appropriate access log to be used for this visualization
+    if (asset.id == mockedRecords.MedicalRecords[2].did) {
+      var accessLog = bloodwork2AccessEvents
+    } else if (asset.id == mockedRecords.MedicalRecords[3].did) {
+      var accessLog = covidAccessEvents
+    } else {
+      var accessLog = mockedAccessEvents
+    }
+
+    // Get access and denied events
+    const deniedEvents = getDeniedEvents(accessLog)
+    const grantedEvents = getGrantedEvents(accessLog)
+
+    // Combine the denied and granted events into one array
+    const accessEvents: Order[] = [...deniedEvents, ...grantedEvents]
 
     const [initialOrders, setInitialOrders] = useState([])
     const [filteredOrders, setFilteredOrders] = useState([])
