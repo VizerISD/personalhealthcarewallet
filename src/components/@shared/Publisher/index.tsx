@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { accountTruncate } from '@utils/web3'
 import { getEnsName } from '@utils/ens'
 import { useIsMounted } from '@hooks/useIsMounted'
+import { useWeb3 } from '@context/Web3'
 import accountAttributes from 'content/static_data/account-attributes-health.json'
 
 export interface PublisherProps {
@@ -26,7 +27,11 @@ export default function Publisher({
 }: PublisherProps): ReactElement {
   const isMounted = useIsMounted()
   const [name, setName] = useState(accountTruncate(account))
-  const owner = getOwner(account)
+  const { accountId } = useWeb3()
+
+  const owner = getOwner(accountId)
+  console.log('owner: ')
+  console.log(owner)
 
   useEffect(() => {
     if (!account || account === '') return

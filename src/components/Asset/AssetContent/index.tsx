@@ -18,6 +18,7 @@ import Button from '@shared/atoms/Button'
 import IndividualUseVisualization from './IndividualUseVisualization'
 import TransactionHistoryVisualization from './TransactionHistoryVisualization'
 import Tooltip from '@shared/atoms/Tooltip'
+import mockedRecords from 'content/static_data/mocked-medical-records.json'
 
 export default function AssetContent({
   asset
@@ -28,6 +29,12 @@ export default function AssetContent({
   const { debug } = useUserPreferences()
   const [receipts, setReceipts] = useState([])
   const [nftPublisher, setNftPublisher] = useState<string>()
+
+  if (asset.id == mockedRecords.MedicalRecords[2].did) {
+    var description = mockedRecords.MedicalRecords[2].description || ''
+  } else {
+    var description = asset?.metadata?.description || ''
+  }
 
   useEffect(() => {
     setNftPublisher(
@@ -91,10 +98,7 @@ export default function AssetContent({
               />
             ) : (
               <>
-                <Markdown
-                  className={styles.description}
-                  text={asset?.metadata?.description || ''}
-                />
+                <Markdown className={styles.description} text={description} />
                 <MetaSecondary ddo={asset} />
               </>
             )}
