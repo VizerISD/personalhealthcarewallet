@@ -9,25 +9,26 @@ import mockedRecords from 'content/static_data/mocked-medical-records.json'
 
 export default function AssetDetails({ uri }: { uri: string }): ReactElement {
   const router = useRouter()
-  const { asset, error, isInPurgatory, loading } = useAsset()
-  const [pageTitle, setPageTitle] = useState<string>()
-
-  if (asset.id == mockedRecords.MedicalRecords[2].did) {
-    var title =
+  const { asset, title, error, isInPurgatory, loading } = useAsset()
+  let record_title = ''
+  if (asset?.id == mockedRecords.MedicalRecords[2].did) {
+    record_title =
       mockedRecords.MedicalRecords[2].title +
       ' on ' +
       mockedRecords.MedicalRecords[2].date
   } else {
-    var { title } = useAsset()
+    record_title = title
   }
+
+  const [pageTitle, setPageTitle] = useState<string>()
 
   useEffect(() => {
     if (!asset || error) {
-      setPageTitle(title || 'Could not retrieve asset')
+      setPageTitle(record_title || 'Could not retrieve asset')
       return
     }
-    setPageTitle(isInPurgatory ? '' : title)
-  }, [asset, error, isInPurgatory, router, title, uri])
+    setPageTitle(isInPurgatory ? '' : record_title)
+  }, [asset, error, isInPurgatory, router, record_title, uri])
 
   return asset && pageTitle !== undefined && !loading ? (
     <Page title={pageTitle} uri={uri}>
