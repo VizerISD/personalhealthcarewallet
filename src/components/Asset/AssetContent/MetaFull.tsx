@@ -4,7 +4,6 @@ import styles from './MetaFull.module.css'
 import Publisher from '@shared/Publisher'
 import { useAsset } from '@context/Asset'
 import { Asset } from '@oceanprotocol/lib'
-import bloodwork2AccessEvents from 'content/static_data/mocked-bloodwork2/access-events.json'
 
 export default function MetaFull({ ddo }: { ddo: Asset }): ReactElement {
   const { isInPurgatory } = useAsset()

@@ -30,8 +30,6 @@ export default function Publisher({
   const { accountId } = useWeb3()
 
   const owner = getOwner(accountId)
-  console.log('owner: ')
-  console.log(owner)
 
   useEffect(() => {
     if (!account || account === '') return

@@ -17,10 +17,10 @@ export default function AssetType({
 }): ReactElement {
   const { asset } = useAsset()
 
-  if (asset.id == mockedRecords.MedicalRecords[2].did) {
+  if (asset?.id == mockedRecords.MedicalRecords[2].did) {
     var record_type = mockedRecords.MedicalRecords[2].title
   } else {
-    var record_type = asset.metadata.type.toString()
+    var record_type = asset?.metadata?.type.toString()
   }
 
   return (

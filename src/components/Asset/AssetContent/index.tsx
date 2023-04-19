@@ -30,7 +30,7 @@ export default function AssetContent({
   const [receipts, setReceipts] = useState([])
   const [nftPublisher, setNftPublisher] = useState<string>()
 
-  if (asset.id == mockedRecords.MedicalRecords[2].did) {
+  if (asset?.id == mockedRecords.MedicalRecords[2].did) {
     var description = mockedRecords.MedicalRecords[2].description || ''
   } else {
     var description = asset?.metadata?.description || ''

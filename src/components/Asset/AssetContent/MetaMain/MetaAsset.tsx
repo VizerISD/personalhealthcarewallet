@@ -28,7 +28,7 @@ export default function MetaAsset({
 
   const dataTokenSymbol = asset?.datatokens[0]?.symbol
 
-  if (asset.id == mockedRecords.MedicalRecords[2].did) {
+  if (asset?.id == mockedRecords.MedicalRecords[2].did) {
     var owner = getName(accountId)
   } else {
     var owner = asset?.nft?.owner
@@ -36,9 +36,7 @@ export default function MetaAsset({
 
   return (
     <div className={styles.wrapper}>
-      <span className={styles.owner}>
-        Owned by <Publisher account={owner} />
-      </span>
+      <span className={styles.owner}>Owned by {owner}</span>
       <span>
         <ExplorerLink
           className={styles.datatoken}
