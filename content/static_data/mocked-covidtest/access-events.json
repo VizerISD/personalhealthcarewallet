@@ -1,0 +1,85 @@
+{
+  "data": {
+    "accessDenieds": [
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e09",
+        "payer": {
+          "id": "0xd3fa48aa65c6701f2cf56662f669fd6619799b72",
+          "name": "Isador Broadbear"
+        },
+        "obj_addr": "0x05c02a63f7c04dB0c1a73e4B000b3A80f8613E56",
+        "createdTimestamp": "1648099826",
+        "message": "Neither from CGI nor from blockchain department",
+        "estimatedUSDValue": "Denied"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e23",
+        "payer": {
+          "id": "0x07c8e62712f9613efdbd9ea7dd31b5f5c6f52a46",
+          "name": "Isador Broadbear"
+        },
+        "obj_addr": "0x05c02a63f7c04dB0c1a73e4B000b3A80f8613E56",
+        "createdTimestamp": "1648099826",
+        "message": "Neither from CGI nor from blockchain department",
+        "estimatedUSDValue": "Denied"
+      }
+    ],
+    "accessGranteds": [
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e25",
+        "payer": {
+          "id": "0x07c8e62712f9613efdbd9ea7dd31b5f5c6f52a46",
+          "name": "Isador Broadbear"
+        },
+        "obj_addr": "0x25c526dfaec3b743f256aa81ae080718665e9401",
+        "createdTimestamp": "1648199826",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e26",
+        "payer": {
+          "id": "0x07c8e62712f9613efdbd9ea7dd31b5f5c6f52a46",
+          "name": "Isador Broadbear"
+        },
+        "obj_addr": "0xd3fa48aa65c6701f2cf56662f669fd6619799b71",
+        "createdTimestamp": "1648199926",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e28",
+        "payer": {
+          "id": "0x07c8e62712f9613efdbd9ea7dd31b5f5c6f52a46",
+          "name": "Isador Broadbear"
+        },
+        "obj_addr": "0x90106fa680af6fc1046e4183f91ea033d2380d46",
+        "createdTimestamp": "1648191099",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e31",
+        "payer": {
+          "id": "0x07c8e62712f9613efdbd9ea7dd31b5f5c6f52a46",
+          "name": "Isador Broadbear"
+        },
+        "obj_addr": "0x703185b291ccd8caa38158a085060b8342c6807b",
+        "createdTimestamp": "1648191110",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e42",
+        "payer": {
+          "id": "0x07c8e62712f9613efdbd9ea7dd31b5f5c6f52a46",
+          "name": "Isador Broadbear"
+        },
+        "obj_addr": "0x97e5c7aeb90c4bc5e3b0f33e71e8991af26a8760",
+        "createdTimestamp": "1648192110",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      }
+    ]
+  }
+}
