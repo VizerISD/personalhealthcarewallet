@@ -28,10 +28,17 @@ export default function MetaAsset({
 
   const dataTokenSymbol = asset?.datatokens[0]?.symbol
 
-  if (asset?.id == mockedRecords.MedicalRecords[2].did) {
-    var owner = getName(accountId)
+  let owner = ''
+  if (
+    asset?.id == mockedRecords.MedicalRecords[0].did ||
+    asset?.id == mockedRecords.MedicalRecords[1].did ||
+    asset?.id == mockedRecords.MedicalRecords[2].did ||
+    asset?.id == mockedRecords.MedicalRecords[3].did ||
+    asset?.id == mockedRecords.MedicalRecords[4].did
+  ) {
+    owner = getName(accountId)
   } else {
-    var owner = asset?.nft?.owner
+    owner = asset?.nft?.owner
   }
 
   return (

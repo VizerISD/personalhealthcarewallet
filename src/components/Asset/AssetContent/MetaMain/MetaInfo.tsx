@@ -17,10 +17,19 @@ export default function MetaInfo({
   const accessType = isCompute ? 'compute' : 'access'
   const nftOwner = asset?.nft?.owner
 
-  if (asset?.id == mockedRecords.MedicalRecords[2].did) {
-    var type = mockedRecords.MedicalRecords[2].title
+  let type = ''
+  if (asset?.id == mockedRecords.MedicalRecords[0].did) {
+    type = mockedRecords.MedicalRecords[0].title
+  } else if (asset?.id == mockedRecords.MedicalRecords[1].did) {
+    type = mockedRecords.MedicalRecords[1].title
+  } else if (asset?.id == mockedRecords.MedicalRecords[2].did) {
+    type = mockedRecords.MedicalRecords[2].title
+  } else if (asset?.id == mockedRecords.MedicalRecords[3].did) {
+    type = mockedRecords.MedicalRecords[3].title
+  } else if (asset?.id == mockedRecords.MedicalRecords[4].did) {
+    type = mockedRecords.MedicalRecords[4].title
   } else {
-    var type = asset?.metadata?.type.toString()
+    type = asset?.metadata?.type.toString()
   }
 
   return (

@@ -7,6 +7,7 @@ import { useAsset } from '@context/Asset'
 import { AxisBottom, AxisLeft } from '@visx/axis'
 import { accountTruncate } from '@utils/web3'
 import Link from 'next/link'
+import bloodwork1AccessEvents from 'content/static_data/mocked-bloodwork1/access-events.json'
 import bloodwork2AccessEvents from 'content/static_data/mocked-bloodwork2/access-events.json'
 import covidAccessEvents from 'content/static_data/mocked-covidtest/access-events.json'
 import mockedAccessEvents from 'content/static_data/mocked-access-events.json'
@@ -96,12 +97,15 @@ export default function IndividualUseVisualization({
 }: BarsProps) {
   const { asset } = useAsset()
 
-  if (asset.id == mockedRecords.MedicalRecords[2].did) {
-    var accessLog = bloodwork2AccessEvents
-  } else if (asset.id == mockedRecords.MedicalRecords[3].did) {
-    var accessLog = covidAccessEvents
+  let accessLog = null
+  if (asset?.id == mockedRecords.MedicalRecords[1].did) {
+    accessLog = bloodwork1AccessEvents
+  } else if (asset?.id == mockedRecords.MedicalRecords[2].did) {
+    accessLog = bloodwork2AccessEvents
+  } else if (asset?.id == mockedRecords.MedicalRecords[3].did) {
+    accessLog = covidAccessEvents
   } else {
-    var accessLog = mockedAccessEvents
+    accessLog = mockedAccessEvents
   }
 
   const deniedEvents = getDeniedEvents(accessLog)

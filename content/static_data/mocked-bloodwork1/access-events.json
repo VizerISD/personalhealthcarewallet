@@ -1,0 +1,62 @@
+{
+  "data": {
+    "accessDenieds": [],
+    "accessGranteds": [
+      {
+        "tx": "0x83cf57ad96403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+        "payer": {
+          "id": "0x8a5111ccd9dad61c5ed17bd39ca8edc10bc3a5d0",
+          "name": "Tabbitha Fidelli"
+        },
+        "obj_addr": "0x25c526dfaec3b743f256aa81ae080718665e9401",
+        "createdTimestamp": "1678792826",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0x783cffc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e19",
+        "payer": {
+          "id": "0x8a5111ccd9dad61c5ed17bd39ca8edc10bc3a5d0",
+          "name": "Tabbitha Fidelli"
+        },
+        "obj_addr": "0xd3fa48aa65c6701f2cf56662f669fd6619799b71",
+        "createdTimestamp": "1678793826",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0x99184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e20",
+        "payer": {
+          "id": "0x8a5111ccd9dad61c5ed17bd39ca8edc10bc3a5d0",
+          "name": "Tabbitha Fidelli"
+        },
+        "obj_addr": "0x90106fa680af6fc1046e4183f91ea033d2380d46",
+        "createdTimestamp": "1678795826",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0x03b9d6c596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e21",
+        "payer": {
+          "id": "0x8a5111ccd9dad61c5ed17bd39ca8edc10bc3a5d0",
+          "name": "Tabbitha Fidelli"
+        },
+        "obj_addr": "0x703185b291ccd8caa38158a085060b8342c6807b",
+        "createdTimestamp": "1678893826",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf6356fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e22",
+        "payer": {
+          "id": "0x8a5111ccd9dad61c5ed17bd39ca8edc10bc3a5d0",
+          "name": "Tabbitha Fidelli"
+        },
+        "obj_addr": "0x97e5c7aeb90c4bc5e3b0f33e71e8991af26a8760",
+        "createdTimestamp": "1679999999",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      }
+    ]
+  }
+}

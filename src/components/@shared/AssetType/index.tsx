@@ -17,10 +17,19 @@ export default function AssetType({
 }): ReactElement {
   const { asset } = useAsset()
 
-  if (asset?.id == mockedRecords.MedicalRecords[2].did) {
-    var record_type = mockedRecords.MedicalRecords[2].title
+  let record_type = ''
+  if (asset?.id == mockedRecords.MedicalRecords[0].did) {
+    record_type = mockedRecords.MedicalRecords[0].title
+  } else if (asset?.id == mockedRecords.MedicalRecords[1].did) {
+    record_type = mockedRecords.MedicalRecords[1].title
+  } else if (asset?.id == mockedRecords.MedicalRecords[2].did) {
+    record_type = mockedRecords.MedicalRecords[2].title
+  } else if (asset?.id == mockedRecords.MedicalRecords[3].did) {
+    record_type = mockedRecords.MedicalRecords[3].title
+  } else if (asset?.id == mockedRecords.MedicalRecords[4].did) {
+    record_type = mockedRecords.MedicalRecords[4].title
   } else {
-    var record_type = asset?.metadata?.type.toString()
+    record_type = asset?.metadata?.type.toString()
   }
 
   return (

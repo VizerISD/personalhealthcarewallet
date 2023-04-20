@@ -166,19 +166,24 @@ export default function Download({
 
   let link = ''
   let name = ''
-  if (asset?.id == mockedRecords.MedicalRecords[2].did) {
+  if (asset?.id == mockedRecords.MedicalRecords[1].did) {
+    link = mockedRecords.MedicalRecords[1].file_link
+    name = mockedRecords.MedicalRecords[1].title
+  } else if (asset?.id == mockedRecords.MedicalRecords[2].did) {
     link = mockedRecords.MedicalRecords[2].file_link
     name = mockedRecords.MedicalRecords[2].title
   } else {
     // fill in for other assets
+    //link = "https://www.ieee.org/content/dam/ieee-org/ieee/web/org/conferences/conference-template-a4.docx"
+    link = mockedRecords.MedicalRecords[2].file_link
+    name = 'test'
   }
 
   const PurchaseButton = () => (
     <a
-      href={link}
-      target="_blank"
-      rel="noopener noreferrer"
-      download="test-file"
+      href={isOwned ? link : 'javascript:void(0)'}
+      target={isOwned ? '_blank' : '_self'}
+      download={name}
     >
       <ButtonBuy
         action="download"

@@ -53,7 +53,7 @@ export default function Publisher({
         owner
       ) : (
         <>
-          <Link href={`/profile/${account}`}>
+          <Link href={`/profile/${owner}`}>
             <a title="Show profile page.">{owner}</a>
           </Link>
         </>

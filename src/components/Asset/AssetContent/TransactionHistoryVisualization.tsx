@@ -18,6 +18,7 @@ import { BrushHandleRenderProps } from '@visx/brush/lib/BrushHandle'
 import { PatternLines } from '@visx/pattern'
 import { Brush } from '@visx/brush'
 import mockedAccessEvents from 'content/static_data/mocked-access-events.json'
+import bloodwork1AccessEvents from 'content/static_data/mocked-bloodwork1/access-events.json'
 import bloodwork2AccessEvents from 'content/static_data/mocked-bloodwork2/access-events.json'
 import covidAccessEvents from 'content/static_data/mocked-covidtest/access-events.json'
 import mockedRecords from 'content/static_data/mocked-medical-records.json'
@@ -87,12 +88,15 @@ export default withTooltip<TimelineProps, Order>(
     // const { orders } = asset
 
     // Based on the asset look at, set the appropriate access log to be used for this visualization
-    if (asset.id == mockedRecords.MedicalRecords[2].did) {
-      var accessLog = bloodwork2AccessEvents
-    } else if (asset.id == mockedRecords.MedicalRecords[3].did) {
-      var accessLog = covidAccessEvents
+    let accessLog = null
+    if (asset?.id == mockedRecords.MedicalRecords[1].did) {
+      accessLog = bloodwork1AccessEvents
+    } else if (asset?.id == mockedRecords.MedicalRecords[2].did) {
+      accessLog = bloodwork2AccessEvents
+    } else if (asset?.id == mockedRecords.MedicalRecords[3].did) {
+      accessLog = covidAccessEvents
     } else {
-      var accessLog = mockedAccessEvents
+      accessLog = mockedAccessEvents
     }
 
     // Get access and denied events
