@@ -4,6 +4,7 @@ import Publisher from '@shared/Publisher'
 import { getServiceByName } from '@utils/ddo'
 import React, { ReactElement } from 'react'
 import styles from './MetaInfo.module.css'
+import mockedRecords from 'content/static_data/mocked-medical-records.json'
 
 export default function MetaInfo({
   asset,
@@ -16,10 +17,16 @@ export default function MetaInfo({
   const accessType = isCompute ? 'compute' : 'access'
   const nftOwner = asset?.nft?.owner
 
+  if (asset?.id == mockedRecords.MedicalRecords[2].did) {
+    var type = mockedRecords.MedicalRecords[2].title
+  } else {
+    var type = asset?.metadata?.type.toString()
+  }
+
   return (
     <div className={styles.wrapper}>
       <AssetType
-        type={asset?.metadata.type}
+        type={type}
         accessType={accessType}
         className={styles.assetType}
       />
