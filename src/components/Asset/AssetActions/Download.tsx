@@ -17,6 +17,7 @@ import { useIsMounted } from '@hooks/useIsMounted'
 import { useMarketMetadata } from '@context/MarketMetadata'
 import Alert from '@shared/atoms/Alert'
 import Loader from '@shared/atoms/Loader'
+import mockedRecords from 'content/static_data/mocked-medical-records.json'
 
 export default function Download({
   asset,
@@ -138,7 +139,7 @@ export default function Download({
           )[3]
         )
 
-        await downloadFile(web3, asset, accountId, validOrderTx)
+        //await downloadFile(web3, asset, accountId, validOrderTx)
       } else {
         setStatusText(
           getOrderFeedback(
@@ -163,25 +164,41 @@ export default function Download({
     setIsLoading(false)
   }
 
+  let link = ''
+  let name = ''
+  if (asset?.id == mockedRecords.MedicalRecords[2].did) {
+    link = mockedRecords.MedicalRecords[2].file_link
+    name = mockedRecords.MedicalRecords[2].title
+  } else {
+    // fill in for other assets
+  }
+
   const PurchaseButton = () => (
-    <ButtonBuy
-      action="download"
-      disabled={isDisabled}
-      hasPreviousOrder={isOwned}
-      hasDatatoken={hasDatatoken}
-      btSymbol={asset?.accessDetails?.baseToken?.symbol}
-      dtSymbol={asset?.datatokens[0]?.symbol}
-      dtBalance={dtBalance}
-      onClick={handleOrderOrDownload}
-      assetTimeout={secondsToString(asset.services[0].timeout)}
-      assetType={asset?.metadata?.type}
-      stepText={statusText}
-      isLoading={isLoading}
-      priceType={asset.accessDetails?.type}
-      isConsumable={asset.accessDetails?.isPurchasable}
-      isBalanceSufficient={isBalanceSufficient}
-      consumableFeedback={consumableFeedback}
-    />
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      download="test-file"
+    >
+      <ButtonBuy
+        action="download"
+        disabled={isDisabled}
+        hasPreviousOrder={isOwned}
+        hasDatatoken={hasDatatoken}
+        btSymbol={asset?.accessDetails?.baseToken?.symbol}
+        dtSymbol={asset?.datatokens[0]?.symbol}
+        dtBalance={dtBalance}
+        onClick={handleOrderOrDownload}
+        assetTimeout={secondsToString(asset.services[0].timeout)}
+        assetType={asset?.metadata?.type}
+        stepText={statusText}
+        isLoading={isLoading}
+        priceType={asset.accessDetails?.type}
+        isConsumable={asset.accessDetails?.isPurchasable}
+        isBalanceSufficient={isBalanceSufficient}
+        consumableFeedback={consumableFeedback}
+      />
+    </a>
   )
 
   const AssetAction = ({ asset }: { asset: AssetExtended }) => {
