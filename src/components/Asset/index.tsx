@@ -11,11 +11,32 @@ export default function AssetDetails({ uri }: { uri: string }): ReactElement {
   const router = useRouter()
   const { asset, title, error, isInPurgatory, loading } = useAsset()
   let record_title = ''
-  if (asset?.id == mockedRecords.MedicalRecords[2].did) {
+
+  if (asset?.id == mockedRecords.MedicalRecords[0].did) {
+    record_title =
+      mockedRecords.MedicalRecords[0].title +
+      ' on ' +
+      mockedRecords.MedicalRecords[0].date
+  } else if (asset?.id == mockedRecords.MedicalRecords[1].did) {
+    record_title =
+      mockedRecords.MedicalRecords[1].title +
+      ' on ' +
+      mockedRecords.MedicalRecords[1].date
+  } else if (asset?.id == mockedRecords.MedicalRecords[2].did) {
     record_title =
       mockedRecords.MedicalRecords[2].title +
       ' on ' +
       mockedRecords.MedicalRecords[2].date
+  } else if (asset?.id == mockedRecords.MedicalRecords[3].did) {
+    record_title =
+      mockedRecords.MedicalRecords[3].title +
+      ' on ' +
+      mockedRecords.MedicalRecords[3].date
+  } else if (asset?.id == mockedRecords.MedicalRecords[4].did) {
+    record_title =
+      mockedRecords.MedicalRecords[4].title +
+      ' on ' +
+      mockedRecords.MedicalRecords[4].date
   } else {
     record_title = title
   }

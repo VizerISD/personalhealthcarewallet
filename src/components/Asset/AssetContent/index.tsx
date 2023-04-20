@@ -30,10 +30,19 @@ export default function AssetContent({
   const [receipts, setReceipts] = useState([])
   const [nftPublisher, setNftPublisher] = useState<string>()
 
-  if (asset?.id == mockedRecords.MedicalRecords[2].did) {
-    var description = mockedRecords.MedicalRecords[2].description || ''
+  let description = ''
+  if (asset?.id == mockedRecords.MedicalRecords[0].did) {
+    description = mockedRecords.MedicalRecords[0].description || ''
+  } else if (asset?.id == mockedRecords.MedicalRecords[1].did) {
+    description = mockedRecords.MedicalRecords[1].description || ''
+  } else if (asset?.id == mockedRecords.MedicalRecords[2].did) {
+    description = mockedRecords.MedicalRecords[2].description || ''
+  } else if (asset?.id == mockedRecords.MedicalRecords[3].did) {
+    description = mockedRecords.MedicalRecords[3].description || ''
+  } else if (asset?.id == mockedRecords.MedicalRecords[4].did) {
+    description = mockedRecords.MedicalRecords[4].description || ''
   } else {
-    var description = asset?.metadata?.description || ''
+    description = asset?.metadata?.description || ''
   }
 
   useEffect(() => {
