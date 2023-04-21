@@ -38,8 +38,10 @@
       "title": "Insurance Form",
       "date": "01/20/2016",
       "did": "did:op:1524136237f2aec733fc6f987ee24f3e332e0c8e032f1210aa20ab47931c7488",
-      "most_recently_accessed_by": "Dr. Zacherie Sirett",
-      "accessor_id": "0x471c4fa9fe280c4bb5ec789c7438b06645a3a6c3"
+      "most_recently_accessed_by": "Dr. Emelen Burdon",
+      "accessor_id": "0x471c4fa9fe280c4bb5ec789c7438b06645a3a6c3",
+      "description": "Insurance form from January 20, 2016.",
+      "file_link": "https://drive.google.com/file/d/1oP8hdPOK46RLjNUOUr_0sQFhPTdzWXZO/view?usp=sharing"
     }
   ]
 }
