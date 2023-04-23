@@ -145,9 +145,8 @@ export default function IndividualUseVisualization({
   return (
     <div>
       <svg width={width} height={height}>
-        <LinearGradient id="stroke" from="#ffefef" to="#ffffff" />
         <rect
-          fill="url('#stroke')"
+          fill="#FFFFFF"
           strokeWidth={1}
           stroke="#e2e2e2"
           width="100%"
