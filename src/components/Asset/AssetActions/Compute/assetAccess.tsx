@@ -1,8 +1,10 @@
-import React, { useState, ChangeEvent, ReactElement } from 'react'
+import React, { useState, ChangeEvent, ReactElement, useEffect } from 'react'
 import SearchIcon from '@images/search.svg'
 import InputElement from '@shared/FormInput/InputElement'
 import styles from './assetAccess.module.css'
 import Data from 'content/static_data/doctor-dict.json'
+import mockedRecords from 'content/static_data/mocked-medical-records.json'
+import { useAsset } from '@context/Asset'
 
 export type DataProps = {
   first_name: string
@@ -14,12 +16,38 @@ export type DataProps = {
 }
 
 const doctorData: DataProps[] = Data.map((obj) => ({ ...obj, visible: true }))
-const firstEntry: DataProps = doctorData[0]
-doctorData[0].visible = false
+const firstEntry: DataProps = null
 
 export default function AssetAccess(): ReactElement {
+  const { asset } = useAsset()
+
   const [searchValue, setSearchValue] = useState('')
-  const [accessList, setAccessList] = useState([firstEntry])
+  const [accessList, setAccessList] = useState([])
+
+  useEffect(() => {
+    let firstEntry
+
+    if (asset?.id == mockedRecords.MedicalRecords[1].did) {
+      firstEntry = [doctorData[1]]
+      doctorData[1].visible = false
+    } else if (asset?.id == mockedRecords.MedicalRecords[2].did) {
+      firstEntry = [doctorData[1]]
+      doctorData[1].visible = false
+    } else if (asset?.id == mockedRecords.MedicalRecords[3].did) {
+      firstEntry = [doctorData[7]]
+      doctorData[7].visible = false
+    } else if (asset?.id == mockedRecords.MedicalRecords[4].did) {
+      firstEntry = [doctorData[753], doctorData[2]]
+      doctorData[753].visible = false
+      doctorData[2].visible = false
+    } else {
+      firstEntry = [doctorData[0]]
+      doctorData[0].visible = false
+    }
+
+    // Set the accessList state based on the firstEntry value
+    setAccessList(firstEntry)
+  }, [asset])
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setSearchValue(e.target.value)
