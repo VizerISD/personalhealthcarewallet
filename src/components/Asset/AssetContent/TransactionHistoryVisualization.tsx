@@ -209,15 +209,15 @@ export default withTooltip<TimelineProps, Order>(
     return (
       <div>
         <svg width={width} height={height}>
-          <LinearGradient id="stroke" from="#ffefef" to="#ffffff" />
           <rect
-            fill="url('#stroke')"
+            fill="#FFFFFF"
             strokeWidth={1}
             stroke="#e2e2e2"
             width="100%"
             height="100%"
             rx={4}
           />
+
           {filteredOrders.map((order: Order, i) => {
             return (
               <Group top={height / 4} key={`filtered-dot-${i}`}>
@@ -235,12 +235,12 @@ export default withTooltip<TimelineProps, Order>(
                         ? 'pink'
                         : order.estimatedUSDValue === 'Granted'
                         ? 'lightgreen'
-                        : 'darkgreen'
+                        : '#00BB00'
                       : order.estimatedUSDValue === 'Denied'
                       ? '#e44c4c'
                       : order.estimatedUSDValue === 'Granted'
-                      ? 'darkgreen'
-                      : 'darkgreen'
+                      ? '#00BB00'
+                      : '#00BB00'
                   }
                   onMouseOver={() => {
                     const top = height - 110
@@ -270,12 +270,12 @@ export default withTooltip<TimelineProps, Order>(
                         ? 'pink'
                         : order.estimatedUSDValue === 'Granted'
                         ? 'lightgreen'
-                        : 'darkgreen'
+                        : '#00BB00'
                       : order.estimatedUSDValue === 'Denied'
                       ? '#e44c4c'
                       : order.estimatedUSDValue === 'Granted'
-                      ? 'darkgreen'
-                      : 'darkgreen'
+                      ? '#00BB00'
+                      : '#00BB00'
                   }
                   onMouseOver={() => {
                     const top = height - 110
@@ -314,9 +314,7 @@ export default withTooltip<TimelineProps, Order>(
                     order.estimatedUSDValue === 'Denied' ? '#990000' : '#004516'
                   }
                   fill={
-                    order.estimatedUSDValue === 'Denied'
-                      ? '#e44c4c'
-                      : 'darkgreen'
+                    order.estimatedUSDValue === 'Denied' ? '#e44c4c' : '#00BB00'
                   }
                 />
                 <text
@@ -406,7 +404,7 @@ export default withTooltip<TimelineProps, Order>(
                     color:
                       tooltipData.estimatedUSDValue === 'Denied'
                         ? 'red'
-                        : 'green'
+                        : '#00BB00'
                   }}
                 >{`${tooltipData.estimatedUSDValue}`}</strong>
               </div>
