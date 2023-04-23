@@ -90,7 +90,7 @@ export default function AssetAccess(): ReactElement {
 
   return (
     <div>
-      <h3 className={styles.heading}>Grant Access</h3>
+      <h4 className={styles.heading}>Grant Access</h4>
 
       <form className={styles.searchBox}>
         <InputElement
@@ -144,7 +144,7 @@ export default function AssetAccess(): ReactElement {
       </div>
 
       <div>
-        <h3 className={styles.heading}>People Currently with Access</h3>
+        <h4 className={styles.heading}>People Currently with Access</h4>
       </div>
       <div className={styles.scroll}>
         {accessList &&
