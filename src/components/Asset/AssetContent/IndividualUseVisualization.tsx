@@ -10,6 +10,7 @@ import Link from 'next/link'
 import bloodwork1AccessEvents from 'content/static_data/mocked-bloodwork1/access-events.json'
 import bloodwork2AccessEvents from 'content/static_data/mocked-bloodwork2/access-events.json'
 import covidAccessEvents from 'content/static_data/mocked-covidtest/access-events.json'
+import insuranceAccessEvents from 'content/static_data/mocked-insuranceform/access-events.json'
 import mockedAccessEvents from 'content/static_data/mocked-access-events.json'
 import mockedRecords from 'content/static_data/mocked-medical-records.json'
 import styles from './IndividualUseVisualization.module.css'
@@ -104,6 +105,8 @@ export default function IndividualUseVisualization({
     accessLog = bloodwork2AccessEvents
   } else if (asset?.id == mockedRecords.MedicalRecords[3].did) {
     accessLog = covidAccessEvents
+  } else if (asset?.id == mockedRecords.MedicalRecords[4].did) {
+    accessLog = insuranceAccessEvents
   } else {
     accessLog = mockedAccessEvents
   }

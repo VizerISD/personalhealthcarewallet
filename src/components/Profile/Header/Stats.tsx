@@ -61,7 +61,7 @@ export default function Stats({
         label="Number of Medical Records"
         value={mockedMedicalRecords.MedicalRecords.length}
       />
-      <NumberUnit label="Number of People with Access" value="3" />
+      <NumberUnit label="Number of People with Access" value="5" />
     </div>
   )
 }

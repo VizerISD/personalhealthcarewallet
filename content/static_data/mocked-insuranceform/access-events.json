@@ -1,0 +1,305 @@
+{
+  "data": {
+    "accessDenieds": [
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e09",
+        "payer": {
+          "id": "0xd64a20cbf33897bb19fcc85a2844613d0784f719",
+          "name": "Emelen Burdon"
+        },
+        "obj_addr": "0x05c02a63f7c04dB0c1a73e4B000b3A80f8613E56",
+        "createdTimestamp": "1452861547",
+        "message": "Neither from CGI nor from blockchain department",
+        "estimatedUSDValue": "Denied"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e23",
+        "payer": {
+          "id": "0x0c591a33ed0eea460ae83812b711ad7618679888",
+          "name": "Addie Sapwell"
+        },
+        "obj_addr": "0x05c02a63f7c04dB0c1a73e4B000b3A80f8613E56",
+        "createdTimestamp": "1467808747",
+        "message": "Neither from CGI nor from blockchain department",
+        "estimatedUSDValue": "Denied"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e23",
+        "payer": {
+          "id": "0x0c591a33ed0eea460ae83812b711ad7618679888",
+          "name": "Addie Sapwell"
+        },
+        "obj_addr": "0x05c02a63f7c04dB0c1a73e4B000b3A80f8613E56",
+        "createdTimestamp": "1514810347",
+        "message": "Neither from CGI nor from blockchain department",
+        "estimatedUSDValue": "Denied"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e23",
+        "payer": {
+          "id": "0x481bc388be2bea34a66b5a59925c4cbe44a75070",
+          "name": "Glen Becaris"
+        },
+        "obj_addr": "0x05c02a63f7c04dB0c1a73e4B000b3A80f8613E56",
+        "createdTimestamp": "1515760747",
+        "message": "Neither from CGI nor from blockchain department",
+        "estimatedUSDValue": "Denied"
+      }
+    ],
+    "accessGranteds": [
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e25",
+        "payer": {
+          "id": "0xd64a20cbf33897bb19fcc85a2844613d0784f719",
+          "name": "Emelen Burdon"
+        },
+        "obj_addr": "0x25c526dfaec3b743f256aa81ae080718665e9401",
+        "createdTimestamp": "1453297800",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e26",
+        "payer": {
+          "id": "0xd64a20cbf33897bb19fcc85a2844613d0784f719",
+          "name": "Emelen Burdon"
+        },
+        "obj_addr": "0xd3fa48aa65c6701f2cf56662f669fd6619799b71",
+        "createdTimestamp": "1453715100",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e28",
+        "payer": {
+          "id": "0x0c591a33ed0eea460ae83812b711ad7618679888",
+          "name": "Addie Sapwell"
+        },
+        "obj_addr": "0x90106fa680af6fc1046e4183f91ea033d2380d46",
+        "createdTimestamp": "1468330800",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e31",
+        "payer": {
+          "id": "0x0c591a33ed0eea460ae83812b711ad7618679888",
+          "name": "Addie Sapwell"
+        },
+        "obj_addr": "0x703185b291ccd8caa38158a085060b8342c6807b",
+        "createdTimestamp": "1468426800",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e42",
+        "payer": {
+          "id": "0xd64a20cbf33897bb19fcc85a2844613d0784f719",
+          "name": "Emelen Burdon"
+        },
+        "obj_addr": "0x97e5c7aeb90c4bc5e3b0f33e71e8991af26a8760",
+        "createdTimestamp": "1484893800",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e31",
+        "payer": {
+          "id": "0x481bc388be2bea34a66b5a59925c4cbe44a75070",
+          "name": "Glen Becaris"
+        },
+        "obj_addr": "0x703185b291ccd8caa38158a085060b8342c6807b",
+        "createdTimestamp": "1516467900",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e42",
+        "payer": {
+          "id": "0xd64a20cbf33897bb19fcc85a2844613d0784f719",
+          "name": "Emelen Burdon"
+        },
+        "obj_addr": "0x97e5c7aeb90c4bc5e3b0f33e71e8991af26a8760",
+        "createdTimestamp": "1484893800",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e31",
+        "payer": {
+          "id": "0x481bc388be2bea34a66b5a59925c4cbe44a75070",
+          "name": "Glen Becaris"
+        },
+        "obj_addr": "0x703185b291ccd8caa38158a085060b8342c6807b",
+        "createdTimestamp": "1516467900",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e42",
+        "payer": {
+          "id": "0xd64a20cbf33897bb19fcc85a2844613d0784f719",
+          "name": "Emelen Burdon"
+        },
+        "obj_addr": "0x97e5c7aeb90c4bc5e3b0f33e71e8991af26a8760",
+        "createdTimestamp": "1484893800",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e42",
+        "payer": {
+          "id": "0xd64a20cbf33897bb19fcc85a2844613d0784f719",
+          "name": "Emelen Burdon"
+        },
+        "obj_addr": "0x97e5c7aeb90c4bc5e3b0f33e71e8991af26a8760",
+        "createdTimestamp": "1484893800",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e31",
+        "payer": {
+          "id": "0x481bc388be2bea34a66b5a59925c4cbe44a75070",
+          "name": "Glen Becaris"
+        },
+        "obj_addr": "0x703185b291ccd8caa38158a085060b8342c6807b",
+        "createdTimestamp": "1516467900",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e42",
+        "payer": {
+          "id": "0xd64a20cbf33897bb19fcc85a2844613d0784f719",
+          "name": "Emelen Burdon"
+        },
+        "obj_addr": "0x97e5c7aeb90c4bc5e3b0f33e71e8991af26a8760",
+        "createdTimestamp": "1516433400",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e31",
+        "payer": {
+          "id": "0x481bc388be2bea34a66b5a59925c4cbe44a75070",
+          "name": "Glen Becaris"
+        },
+        "obj_addr": "0x703185b291ccd8caa38158a085060b8342c6807b",
+        "createdTimestamp": "1532066400",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e42",
+        "payer": {
+          "id": "0xd64a20cbf33897bb19fcc85a2844613d0784f719",
+          "name": "Emelen Burdon"
+        },
+        "obj_addr": "0x97e5c7aeb90c4bc5e3b0f33e71e8991af26a8760",
+        "createdTimestamp": "1547910900",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e42",
+        "payer": {
+          "id": "0xd64a20cbf33897bb19fcc85a2844613d0784f719",
+          "name": "Emelen Burdon"
+        },
+        "obj_addr": "0x97e5c7aeb90c4bc5e3b0f33e71e8991af26a8760",
+        "createdTimestamp": "1547974800",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e31",
+        "payer": {
+          "id": "0x481bc388be2bea34a66b5a59925c4cbe44a75070",
+          "name": "Glen Becaris"
+        },
+        "obj_addr": "0x703185b291ccd8caa38158a085060b8342c6807b",
+        "createdTimestamp": "1563636300",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e42",
+        "payer": {
+          "id": "0xd64a20cbf33897bb19fcc85a2844613d0784f719",
+          "name": "Emelen Burdon"
+        },
+        "obj_addr": "0x97e5c7aeb90c4bc5e3b0f33e71e8991af26a8760",
+        "createdTimestamp": "1579425000",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e42",
+        "payer": {
+          "id": "0xd64a20cbf33897bb19fcc85a2844613d0784f719",
+          "name": "Emelen Burdon"
+        },
+        "obj_addr": "0x97e5c7aeb90c4bc5e3b0f33e71e8991af26a8760",
+        "createdTimestamp": "1579524900",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e31",
+        "payer": {
+          "id": "0x481bc388be2bea34a66b5a59925c4cbe44a75070",
+          "name": "Glen Becaris"
+        },
+        "obj_addr": "0x703185b291ccd8caa38158a085060b8342c6807b",
+        "createdTimestamp": "1595259900",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e42",
+        "payer": {
+          "id": "0xd64a20cbf33897bb19fcc85a2844613d0784f719",
+          "name": "Emelen Burdon"
+        },
+        "obj_addr": "0x97e5c7aeb90c4bc5e3b0f33e71e8991af26a8760",
+        "createdTimestamp": "1611026400",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e42",
+        "payer": {
+          "id": "0xd64a20cbf33897bb19fcc85a2844613d0784f719",
+          "name": "Emelen Burdon"
+        },
+        "obj_addr": "0x97e5c7aeb90c4bc5e3b0f33e71e8991af26a8760",
+        "createdTimestamp": "1611113100",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e31",
+        "payer": {
+          "id": "0x481bc388be2bea34a66b5a59925c4cbe44a75070",
+          "name": "Glen Becaris"
+        },
+        "obj_addr": "0x703185b291ccd8caa38158a085060b8342c6807b",
+        "createdTimestamp": "1626774900",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      },
+      {
+        "tx": "0xf4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e42",
+        "payer": {
+          "id": "0xd64a20cbf33897bb19fcc85a2844613d0784f719",
+          "name": "Emelen Burdon"
+        },
+        "obj_addr": "0x97e5c7aeb90c4bc5e3b0f33e71e8991af26a8760",
+        "createdTimestamp": "1642563600",
+        "blockNumber": "32343733",
+        "estimatedUSDValue": "Granted"
+      }
+    ]
+  }
+}
