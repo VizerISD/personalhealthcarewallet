@@ -6,7 +6,6 @@ import Data from 'content/static_data/doctor-dict.json'
 import Button from '@shared/atoms/Button'
 import mockedRecords from 'content/static_data/mocked-medical-records.json'
 import { useAsset } from '@context/Asset'
-import Button from '@shared/atoms/Button'
 
 export type DataProps = {
   first_name: string
@@ -29,10 +28,6 @@ export default function AssetAccess(): ReactElement {
   const [modalResult, setModalResult] = useState(false)
   const [permissionAction, setPermissionAction] = useState('')
   const [accessList, setAccessList] = useState([])
-  const [showConfirmationWindow, setShowConfirmationWindow] = useState(false)
-  const [currentEntity, setCurrentEntity] = useState(initialValue)
-  const [modalResult, setModalResult] = useState(false)
-  const [permissionAction, setPermissionAction] = useState('')
 
   useEffect(() => {
     let firstEntry
