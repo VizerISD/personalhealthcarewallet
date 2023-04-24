@@ -32,16 +32,16 @@ export default function AssetAccess(): ReactElement {
   useEffect(() => {
     let firstEntry
 
-    if (asset?.id === mockedRecords.MedicalRecords[1].did) {
+    if (asset?.id == mockedRecords.MedicalRecords[1].did) {
       firstEntry = [doctorData[1]]
       doctorData[1].visible = false
-    } else if (asset?.id === mockedRecords.MedicalRecords[2].did) {
+    } else if (asset?.id == mockedRecords.MedicalRecords[2].did) {
       firstEntry = [doctorData[1]]
       doctorData[1].visible = false
-    } else if (asset?.id === mockedRecords.MedicalRecords[3].did) {
+    } else if (asset?.id == mockedRecords.MedicalRecords[3].did) {
       firstEntry = [doctorData[7]]
       doctorData[7].visible = false
-    } else if (asset?.id === mockedRecords.MedicalRecords[4].did) {
+    } else if (asset?.id == mockedRecords.MedicalRecords[4].did) {
       firstEntry = [doctorData[753], doctorData[2]]
       doctorData[753].visible = false
       doctorData[2].visible = false
