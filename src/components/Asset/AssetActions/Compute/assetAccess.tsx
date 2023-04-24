@@ -6,6 +6,7 @@ import Data from 'content/static_data/doctor-dict.json'
 import Button from '@shared/atoms/Button'
 import mockedRecords from 'content/static_data/mocked-medical-records.json'
 import { useAsset } from '@context/Asset'
+import Button from '@shared/atoms/Button'
 
 export type DataProps = {
   first_name: string
@@ -23,6 +24,10 @@ export default function AssetAccess(): ReactElement {
   const { asset } = useAsset()
 
   const [searchValue, setSearchValue] = useState('')
+  const [showConfirmationWindow, setShowConfirmationWindow] = useState(false)
+  const [currentEntity, setCurrentEntity] = useState(initialValue)
+  const [modalResult, setModalResult] = useState(false)
+  const [permissionAction, setPermissionAction] = useState('')
   const [accessList, setAccessList] = useState([])
   const [showConfirmationWindow, setShowConfirmationWindow] = useState(false)
   const [currentEntity, setCurrentEntity] = useState(initialValue)
@@ -32,16 +37,16 @@ export default function AssetAccess(): ReactElement {
   useEffect(() => {
     let firstEntry
 
-    if (asset?.id == mockedRecords.MedicalRecords[1].did) {
+    if (asset?.id === mockedRecords.MedicalRecords[1].did) {
       firstEntry = [doctorData[1]]
       doctorData[1].visible = false
-    } else if (asset?.id == mockedRecords.MedicalRecords[2].did) {
+    } else if (asset?.id === mockedRecords.MedicalRecords[2].did) {
       firstEntry = [doctorData[1]]
       doctorData[1].visible = false
-    } else if (asset?.id == mockedRecords.MedicalRecords[3].did) {
+    } else if (asset?.id === mockedRecords.MedicalRecords[3].did) {
       firstEntry = [doctorData[7]]
       doctorData[7].visible = false
-    } else if (asset?.id == mockedRecords.MedicalRecords[4].did) {
+    } else if (asset?.id === mockedRecords.MedicalRecords[4].did) {
       firstEntry = [doctorData[753], doctorData[2]]
       doctorData[753].visible = false
       doctorData[2].visible = false
