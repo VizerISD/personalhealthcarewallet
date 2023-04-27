@@ -141,7 +141,7 @@ export default function AssetActions({
       )
     },
     {
-      title: 'Asset Access',
+      title: 'Access',
       content: <AssetAccess></AssetAccess>
     }
   ]
