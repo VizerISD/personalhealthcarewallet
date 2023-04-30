@@ -34,9 +34,9 @@
     grid-template-rows: 500 500 1fr;
     grid-template-columns: 1.5fr 1fr;
     grid-template-areas:
-      'IndividualUse IndividualUse'
+      'AssetContentContent AssetContentActions'
       'TransactionHistory TransactionHistory'
-      'AssetContentContent AssetContentActions';
+      'IndividualUse IndividualUse';
   }
 
   .content {

@@ -4,8 +4,8 @@
       "accountAddress": "0x6dA9E6bfe0287E3EB58726d3b1125442f343BfA8",
       "abacAttributes": {
         "subjectAttributes": {
-          "name": "Dr. Caroline Rinks",
-          "role": "Doctor"
+          "name": "Caroline Rinks",
+          "role": "Patient"
         }
       }
     },
