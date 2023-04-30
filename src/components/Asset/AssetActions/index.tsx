@@ -129,6 +129,10 @@ export default function AssetActions({
 
   const assetActionTabs: TabsItem[] = [
     {
+      title: 'Access',
+      content: <AssetAccess></AssetAccess>
+    },
+    {
       title: 'Download',
       content: (
         <Consume
@@ -139,10 +143,6 @@ export default function AssetActions({
           fileIsLoading={fileIsLoading}
         />
       )
-    },
-    {
-      title: 'Access',
-      content: <AssetAccess></AssetAccess>
     }
   ]
 
