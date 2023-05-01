@@ -14,9 +14,6 @@ export default function Footer(): ReactElement {
 
   return (
     <footer className={styles.footer}>
-      <BuildId />
-      <MarketStats />
-
       <div className={styles.grid}>
         <Links />
         <div className={styles.copyright}>

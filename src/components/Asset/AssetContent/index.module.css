@@ -26,7 +26,6 @@
   align-items: baseline;
   align-content: bottom;
   height: 40px;
-  margin-top: 10px;
 }
 
 @media (min-width: 60rem) {
@@ -34,9 +33,9 @@
     grid-template-rows: 500 500 1fr;
     grid-template-columns: 1.5fr 1fr;
     grid-template-areas:
-      'IndividualUse IndividualUse'
+      'AssetContentContent AssetContentActions'
       'TransactionHistory TransactionHistory'
-      'AssetContentContent AssetContentActions';
+      'IndividualUse IndividualUse';
   }
 
   .content {
