@@ -100,7 +100,7 @@
 }
 
 .scroll {
-  background: linear-gradient(to bottom, #ffefef, rgb(255, 255, 255));
+  background: white;
   border: black ridge 1px;
   border-radius: 5px;
   color: #fff;
